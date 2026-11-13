@@ -1,0 +1,325 @@
+/*
+  Steel Warehouse Training — sister theme.
+  Same palette, type, and logo as themes/steel-warehouse.css, with a
+  friendlier shape: 6px radius, an ink hero band, red for "correct",
+  and ink plus a word for "not quite". No new hues.
+
+  Switch back to the base theme by pointing the stylesheet link in
+  index.html and process_tracker.html at themes/steel-warehouse.css.
+  See THEMING.md.
+*/
+
+:root,
+[data-theme="light"] {
+  /* Palette. These names match the Steel Warehouse brief. */
+  --sw-red: #ED1C24;
+  --sw-red-dark: #C81017;
+  --sw-ink: #17212E;
+  --sw-black: #191919;
+  --sw-heading: #3C3C3C;
+  --sw-text: #444444;
+  --sw-line: #E6E6E6;
+  --sw-line-strong: #D1D1D1;
+  --sw-mist: #F9F9F9;
+  --sw-white: #FFFFFF;
+
+  /* Public names. Light mode uses the brief values directly. */
+  --red: var(--sw-red);
+  --red-dark: var(--sw-red-dark);
+  --ink: var(--sw-ink);
+  --black: var(--sw-black);
+  --heading: var(--sw-heading);
+  --text: var(--sw-text);
+  --line: var(--sw-line);
+  --line-strong: var(--sw-line-strong);
+  --mist: var(--sw-mist);
+  --white: var(--sw-white);
+
+  /* Tints mixed from the palette. No extra hues. */
+  --red-08: color-mix(in srgb, var(--sw-red) 8%, transparent);
+  --red-12: color-mix(in srgb, var(--sw-red) 12%, transparent);
+  --red-15: color-mix(in srgb, var(--sw-red) 15%, transparent);
+  --red-20: color-mix(in srgb, var(--sw-red) 20%, transparent);
+  --ink-08: color-mix(in srgb, var(--sw-ink) 8%, transparent);
+  --ink-12: color-mix(in srgb, var(--sw-ink) 12%, transparent);
+  --black-10: color-mix(in srgb, var(--sw-black) 10%, transparent);
+  --black-50: color-mix(in srgb, var(--sw-black) 50%, transparent);
+  --black-75: color-mix(in srgb, var(--sw-black) 75%, transparent);
+  --white-65: color-mix(in srgb, var(--sw-white) 65%, transparent);
+  --white-85: color-mix(in srgb, var(--sw-white) 85%, transparent);
+
+  /* Department marks. Same palette, different roles, so groups stay distinct. */
+  --dept-sales: var(--sw-red);
+  --dept-purchasing: var(--sw-ink);
+  --dept-planning: var(--sw-heading);
+  --dept-scheduling: var(--sw-black);
+  --dept-recording: var(--sw-red-dark);
+  --dept-transport: var(--sw-text);
+  --dept-receiving: var(--sw-heading);
+  --dept-production: var(--sw-red-dark);
+  --dept-quality: var(--sw-red);
+  --dept-accounting: var(--sw-ink);
+
+  /* Type. Roboto is the only family. Weights are the loaded cuts. */
+  --font-family: "Roboto", sans-serif;
+  --font: var(--font-family);
+  --mono: var(--font-family);
+  --weight-body: 400;
+  --weight-nav: 600;
+  --weight-button: 700;
+  --weight-heading: 800;
+
+  --eyebrow-size: 16px;
+  --eyebrow-line: 19.2px;
+  --eyebrow-spacing: 1.92px;
+  --hero-size: 56px;
+  --hero-line: 67.2px;
+  --hero-size-phone: 48px;
+  --hero-line-phone: 57.6px;
+  --intro-size: 48px;
+  --intro-line: 60px;
+  --h2-size: 40px;
+  --h2-line: 50px;
+  --h2-size-phone: 32px;
+  --h2-line-phone: 40px;
+  --h2-small-size: 32px;
+  --h2-small-line: 40px;
+  --h2-small-spacing: 0.1px;
+  --h2-small-size-phone: 24px;
+  --h2-small-line-phone: 30px;
+  --card-title-size: 20px;
+  --card-title-line: 25px;
+  --body-size: 16px;
+  --body-line: 24px;
+  --nav-size: 14px;
+  --nav-line: 21px;
+  --button-size: 16px;
+  --button-line: 21.6px;
+  --button-spacing: 0.96px;
+
+  /* Shape. One radius for cards, inputs, buttons, and answer rows. */
+  --radius: 6px;
+  --radius-button: 6px;
+  --radius-card: 6px;
+  --radius-input: 6px;
+  --radius-photo: 6px;
+  /* Pills and chips can be fully rounded. Everything else stays at --radius. */
+  --radius-pill: 999px;
+
+  /* Shadows. The soft Steel Warehouse shadow only. No hard offset. */
+  --shadow-none: none;
+  --shadow-header: 0 4px 8px rgba(0, 0, 0, 0.10);
+  --shadow-card: 0 4px 8px rgba(0, 0, 0, 0.10);
+  --shadow-card-hover: 0 4px 8px rgba(0, 0, 0, 0.10);
+  --shadow-news: 0 4px 8px rgba(0, 0, 0, 0.10);
+  --shadow-input: 0 1px 4px rgba(0, 0, 0, 0.08);
+
+  /* Gradients. Only the primary button and a hero photo scrim. */
+  --gradient-primary: linear-gradient(180deg, var(--sw-red) 0%, var(--sw-red-dark) 100%);
+  --gradient-hero: linear-gradient(180deg, color-mix(in srgb, var(--sw-ink) 20%, transparent) 0%, color-mix(in srgb, var(--sw-ink) 78%, transparent) 100%);
+
+  /* Motion. */
+  --transition-primary: 0.4s ease;
+  --transition-outline: 0.3s ease;
+  --transition-card: 0.3s ease;
+  --transition-slider: 500ms;
+  --ease: ease;
+
+  /* Space and layout. */
+  --container: 1170px;
+  --section-pad-top: 66px;
+  --section-pad-bottom: 90px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --card-padding: 28px;
+  --news-side-padding: 25px;
+  --button-padding: 12px 24px;
+  --input-padding: 12px 16px;
+  --page-pad: 16px;
+  --header-height: 141px;
+  --util-height: 48px;
+  --main-row-height: 93px;
+  --logo-width: 185px;
+  --logo-height: 73px;
+  --logo-width-phone: 108px;
+  --logo-height-phone: 42px;
+  --footer-logo-width: 269px;
+  --footer-logo-height: 106px;
+  --footer-pad-top: 80px;
+  --footer-pad-bottom: 52px;
+  --hamburger-size: 24px;
+  --btn-primary-height: 46px;
+  --btn-outline-height: 50px;
+  --btn-news-height: 44px;
+  --input-height: 48px;
+  --hero-height: 493px;
+  --slider-bar-width: 5px;
+  --slider-bar-height: 86px;
+  --news-photo-width: 266px;
+  --news-photo-height: 169px;
+
+  /*
+    Breakpoints. Custom properties cannot be used inside media queries,
+    so css/steel-look.css repeats 1024px and 767px. Keep them in sync.
+  */
+  --bp-tablet: 1024px;
+  --bp-phone: 767px;
+
+  /* Surfaces the existing training components already reference. */
+  --bg: var(--sw-white);
+  --surface: var(--sw-white);
+  --surface2: var(--sw-mist);
+  --border: var(--sw-line);
+  --accent: var(--sw-red);
+  --accent2: var(--sw-ink);
+  --warn: var(--sw-heading);
+  --danger: var(--sw-red);
+  --muted: var(--sw-text);
+  --input: var(--sw-white);
+  --timing: var(--sw-heading);
+  --done: var(--sw-ink);
+  --on-primary: var(--sw-white);
+
+  /*
+    Sister-theme roles. Component CSS reads these and falls back to the
+    base Steel Warehouse look when the token is absent.
+  */
+  --header-rule: 2px solid var(--sw-red);
+  --control-border: 1px;
+  --intro-bg: var(--sw-ink);
+  --intro-fg: var(--sw-white);
+  --intro-heading: var(--sw-white);
+  --intro-eyebrow: var(--sw-white);
+  --intro-bar: 4px solid var(--sw-red);
+  --intro-illus: var(--sw-line);
+  --illus-display: block;
+  --illus-clear: block;
+  --illus-stroke: var(--sw-ink);
+  --illus-hero: 156px;
+
+  /* Small red text on white. Fills, borders, and large text stay --sw-red. */
+  --red-small: var(--sw-red-dark);
+
+  /* Red means correct. Wrong is ink or heading, never red. */
+  --state-correct: var(--sw-red-dark);
+  --state-correct-large: var(--sw-red);
+  --state-correct-bg: color-mix(in srgb, var(--sw-red) 8%, var(--sw-white));
+  --state-correct-border: var(--sw-red);
+  --state-correct-fill: var(--sw-red);
+  --on-correct: var(--sw-white);
+  --correct-line: 1px solid var(--sw-red);
+  --correct-pad: 8px 10px;
+  --state-wrong: var(--sw-heading);
+  --state-wrong-border: var(--sw-ink);
+  --state-wrong-bg: var(--sw-white);
+  --word-correct: " Correct";
+  --word-wrong: " Not quite";
+  --correct-mark: "\2713  ";
+  --check-anim: sw-check-in .4s ease;
+
+  --placeholder: color-mix(in srgb, var(--sw-text) 42%, var(--sw-white));
+  --text-floor: 12px;
+  --hit-min: 44px;
+  --progress-h: 8px;
+  --review-pad: 12px 14px;
+
+  --email-btn-bg: var(--sw-red);
+  --email-btn-fg: var(--sw-white);
+  --fac-btn-bg: var(--sw-red);
+  --fac-btn-fg: var(--sw-white);
+  --fac-btn-border: var(--sw-red);
+  --fac-btn-hover: var(--sw-red-dark);
+  --fac-btn-hover-fg: var(--sw-white);
+
+  --cell-empty-bg: var(--sw-white);
+  --cell-empty-border: var(--sw-line-strong);
+  --cell-empty-fg: var(--sw-text);
+  --cell-ondeck-bg: var(--sw-mist);
+  --cell-ondeck-border: var(--sw-heading);
+  --cell-ondeck-fg: var(--sw-heading);
+  --cell-filled-bg: color-mix(in srgb, var(--sw-ink) 8%, var(--sw-white));
+  --cell-filled-border: var(--sw-ink);
+  --cell-filled-fg: var(--sw-ink);
+  --cell-done-bg: var(--sw-ink);
+  --cell-done-border: var(--sw-ink);
+  --cell-done-fg: var(--sw-white);
+  --cell-focus-bg: var(--sw-white);
+
+  --confetti: off;
+}
+
+/* Pill alignment. Loaded only with this theme, so the base theme keeps its own display. */
+.ct,
+.gtag,
+.snb,
+.sc-status,
+.up-tag,
+.diff-badge,
+.pm-lv,
+.pm-lib-dept,
+.step-dept,
+.atag,
+.mem-legend-chip,
+.ot-num,
+.login-role-badge,
+.fac-dept-pill,
+.up-filter-btn,
+.gloss-cat-btn,
+.mode-btn,
+.active-chip,
+.badge {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+  Existing light/dark control. Dark uses the same palette:
+  black and ink surfaces, white text, red accent. Header, footer,
+  and form fields stay on the light brand colors via --sw-* tokens.
+*/
+[data-theme="dark"] {
+  --bg: var(--sw-black);
+  --surface: var(--sw-ink);
+  --surface2: var(--sw-black);
+  --border: var(--sw-heading);
+  --text: var(--sw-white);
+  --heading: var(--sw-white);
+  --muted: var(--sw-line-strong);
+  --accent: var(--sw-red);
+  --accent2: var(--sw-white);
+  --warn: var(--sw-line);
+  --danger: var(--sw-red);
+  --input: var(--sw-white);
+  --timing: var(--sw-line);
+  --done: var(--sw-white);
+
+  /* Same palette on dark surfaces. Fields stay white, so placeholders do too. */
+  --intro-bg: var(--sw-ink);
+  --intro-fg: var(--sw-white);
+  --intro-heading: var(--sw-white);
+  --intro-eyebrow: var(--sw-white);
+  --intro-illus: var(--sw-line);
+  --red-small: var(--sw-red);
+  --state-correct: var(--sw-red);
+  --state-correct-large: var(--sw-red);
+  --state-correct-bg: color-mix(in srgb, var(--sw-red) 18%, var(--sw-black));
+  --state-correct-border: var(--sw-red);
+  --state-correct-fill: var(--sw-red);
+  --on-correct: var(--sw-white);
+  --state-wrong: var(--sw-line);
+  --state-wrong-border: var(--sw-line-strong);
+  --state-wrong-bg: var(--sw-ink);
+  --cell-ondeck-bg: var(--sw-mist);
+  --cell-ondeck-border: var(--sw-ink);
+  --cell-ondeck-fg: var(--sw-ink);
+  --cell-filled-bg: color-mix(in srgb, var(--sw-ink) 10%, var(--sw-white));
+  --email-btn-bg: var(--sw-red);
+  --email-btn-fg: var(--sw-white);
+  --fac-btn-bg: var(--sw-red);
+  --fac-btn-fg: var(--sw-white);
+}
