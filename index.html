@@ -4,13 +4,27 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Invex ERP Training — Day 1 · Overview & Setup</title>
+<link rel="icon" href="assets/logo-header.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="themes/steel-warehouse-training.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/app.css">
 <link rel="stylesheet" href="css/steel-look.css">
-<script>/* Steel Warehouse is the default. Dark is an explicit choice. */(function(){var s=localStorage.getItem('invex_theme');document.documentElement.setAttribute('data-theme', s==='dark'?'dark':'light');})();</script>
+<script>/* Apply the saved look and light/dark before first paint. Adele 1 stays the default. */
+(function(){
+  var LOOKS={original:'themes/original.css','adele-1':'themes/steel-warehouse-training.css','adele-2':'themes/adele-2.css'};
+  var CELEB={original:'original','adele-1':'spark','adele-2':'confetti'};
+  var key='adele-1', theme=null;
+  try { key=localStorage.getItem('invex_look')||'adele-1'; theme=localStorage.getItem('invex_theme'); } catch (e) {}
+  if(!LOOKS[key]) key='adele-1';
+  document.documentElement.setAttribute('data-theme', theme==='dark'?'dark':'light');
+  document.documentElement.setAttribute('data-look', key);
+  document.documentElement.setAttribute('data-quiz-celebrate', CELEB[key]);
+  document.write('<link id="invex-theme" rel="stylesheet" href="'+LOOKS[key]+'">');
+})();
+</script>
+<link rel="stylesheet" href="css/look-switch.css">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
@@ -6956,6 +6970,7 @@ function toggleCodeField(btn) {
   const savedRole = sessionStorage.getItem('training_user_role') || 'trainee';
 
   if (savedName) {
+    document.getElementById('login-overlay').classList.add('hidden');
     // Re-hydrate StorageAPI identity from session
     StorageAPI.setUser(savedName, savedDept || '', savedRole);
     setUserName(savedName);
@@ -7189,7 +7204,33 @@ function qzRenderQ(day) {
       opts.appendChild(btn);
     });
   }
-  if (next) { next.disabled = true; next.textContent = q.current < 9 ? 'Next \u2192' : 'Submit Quiz'; }
+  if (next) {
+    next.disabled = true;
+    next.dataset.revealed = '';
+    next.textContent = document.documentElement.getAttribute('data-look')==='adele-2' ? 'Continue' : (q.current < 9 ? 'Next \u2192' : 'Submit Quiz');
+  }
+  var fb = document.getElementById('qz-feedback-'+day);
+  if (fb) { fb.textContent = ''; fb.className = 'quiz-feedback'; }
+}
+
+function qzReveal(day) {
+  var q = activeQuiz[day];
+  var qd = q.questions[q.current];
+  var chosen = q.answers[q.current];
+  var opts = document.getElementById('qz-opts-'+day);
+  if (opts) {
+    Array.prototype.forEach.call(opts.children, function(btn, i) {
+      btn.disabled = true;
+      btn.classList.toggle('is-right', i === qd.ans);
+      btn.classList.toggle('is-wrong', i === chosen && i !== qd.ans);
+    });
+  }
+  var fb = document.getElementById('qz-feedback-'+day);
+  if (fb) {
+    var ok = chosen === qd.ans;
+    fb.className = 'quiz-feedback show ' + (ok ? 'is-right' : 'is-wrong');
+    fb.textContent = ok ? 'Nice work.' : 'Not quite';
+  }
 }
 
 function qzSelect(day, idx) {
@@ -7202,6 +7243,16 @@ function qzSelect(day, idx) {
 
 function qzNext(day) {
   var q = activeQuiz[day];
+  if (document.documentElement.getAttribute('data-look')==='adele-2') {
+    var next = document.getElementById('qz-next-'+day);
+    if (next && next.dataset.revealed !== '1') {
+      qzReveal(day);
+      next.dataset.revealed = '1';
+      next.disabled = false;
+      next.textContent = q.current < 9 ? 'Continue' : 'Submit Quiz';
+      return;
+    }
+  }
   if (q.current < 9) { q.current++; qzRenderQ(day); } else { qzSubmit(day); }
 }
 
@@ -7250,11 +7301,17 @@ function qzShowResult(day, score, answers, questions) {
     '<div class="quiz-result-actions"><a href="'+mailHref+'" class="quiz-email-btn">Email Results to Facilitator</a>'+retryBtn+'</div>' +
     '<div>'+reviewHtml+'</div>';
   resultEl.style.display = 'block';
-  if(passed && typeof confetti !== 'undefined' && getComputedStyle(document.documentElement).getPropertyValue('--confetti').trim() !== 'off'){
+  var celebMode = document.documentElement.getAttribute('data-quiz-celebrate') || '';
+  var celebToken = getComputedStyle(document.documentElement).getPropertyValue('--quiz-celebrate').trim();
+  var confettiFlag = getComputedStyle(document.documentElement).getPropertyValue('--confetti').trim();
+  var spark = celebMode === 'spark' || celebToken === 'spark' || confettiFlag === 'off';
+  if(passed && !spark && typeof confetti !== 'undefined'){
+    var colors = [1,2,3,4,5].map(function(i){ return swHex('--celebrate-'+i); }).filter(function(c){ return c && c !== 'transparent'; });
+    if(colors.length < 2) colors = [swHex('--sw-red'),swHex('--sw-ink'),swHex('--sw-heading'),swHex('--sw-black'),swHex('--sw-red-dark')];
     setTimeout(function(){
-      confetti({particleCount:140,spread:80,origin:{y:0.55},colors:[swHex('--sw-red'),swHex('--sw-ink'),swHex('--sw-heading'),swHex('--sw-black'),swHex('--sw-red-dark')]});
-      setTimeout(function(){ confetti({particleCount:60,spread:50,origin:{y:0.5,x:0.2},colors:[swHex('--sw-red'),swHex('--sw-ink'),swHex('--sw-heading')]}); },400);
-      setTimeout(function(){ confetti({particleCount:60,spread:50,origin:{y:0.5,x:0.8},colors:[swHex('--sw-red'),swHex('--sw-black'),swHex('--sw-red-dark')]}); },600);
+      confetti({particleCount:140,spread:80,origin:{y:0.55},colors:colors});
+      setTimeout(function(){ confetti({particleCount:60,spread:50,origin:{y:0.5,x:0.2},colors:colors}); },400);
+      setTimeout(function(){ confetti({particleCount:60,spread:50,origin:{y:0.5,x:0.8},colors:colors}); },600);
     },300);
   }
 }
@@ -7280,9 +7337,21 @@ function qzBuildCard(day) {
     statusHtml = '<div class="quiz-attempt-status">Attempt '+state.attempts+' of 3 used \u2014 Best score: '+state.bestScore+'/10</div>';
     btnText = 'Retry Quiz ('+(3-state.attempts)+' left)';
   }
+  var coach = '<aside class="quiz-coach">' +
+      '<svg class="quiz-coach-coil" viewBox="0 0 96 96" aria-hidden="true" focusable="false">' +
+        '<circle cx="48" cy="52" r="28" fill="none" stroke="currentColor" stroke-width="3"/>' +
+        '<circle cx="48" cy="52" r="16" fill="none" stroke="currentColor" stroke-width="3"/>' +
+        '<circle cx="48" cy="52" r="5" fill="currentColor"/>' +
+        '<circle cx="36" cy="30" r="3.2" fill="currentColor"/>' +
+        '<circle cx="60" cy="30" r="3.2" fill="currentColor"/>' +
+        '<path d="M34 74c8 7 20 7 28 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' +
+      '</svg>' +
+      '<p class="quiz-coach-bubble">You\'ve got this. Pick the best answer.</p>' +
+    '</aside>';
   return '<div class="shdr"><span class="shdr-t">Knowledge Check \u2014 Day '+day+'</span><div class="shdr-l"></div></div>' +
     '<div class="quiz-card">' +
-      '<div id="qz-intro-'+day+'">' +
+      coach +
+      '<div id="qz-intro-'+day+'" class="quiz-stage">' +
         '<div class="quiz-intro-stats">' +
           '<div class="quiz-stat-item"><span class="quiz-stat-v">10</span><span class="quiz-stat-l">Questions</span></div>' +
           '<div class="quiz-stat-item"><span class="quiz-stat-v">80%</span><span class="quiz-stat-l">Pass Score</span></div>' +
@@ -7292,14 +7361,15 @@ function qzBuildCard(day) {
         statusHtml +
         '<button class="quiz-start-btn" onclick="startQuiz('+day+')"'+btnDis+'>'+btnText+'</button>' +
       '</div>' +
-      '<div id="qz-active-'+day+'" style="display:none">' +
+      '<div id="qz-active-'+day+'" class="quiz-stage" style="display:none">' +
         '<div class="quiz-progress-wrap"><div class="quiz-progress-bar" id="qz-pb-'+day+'" style="width:0%"></div></div>' +
         '<div class="quiz-qnum" id="qz-qnum-'+day+'">Question 1 of 10</div>' +
         '<div class="quiz-question" id="qz-q-'+day+'"></div>' +
         '<div class="quiz-options" id="qz-opts-'+day+'"></div>' +
+        '<div class="quiz-feedback" id="qz-feedback-'+day+'" role="status"></div>' +
         '<button class="quiz-next-btn" id="qz-next-'+day+'" onclick="qzNext('+day+')" disabled>Next \u2192</button>' +
       '</div>' +
-      '<div id="qz-result-'+day+'" style="display:none"></div>' +
+      '<div id="qz-result-'+day+'" class="quiz-stage" style="display:none"></div>' +
     '</div>';
 }
 
@@ -9331,4 +9401,11 @@ function arcLoop(day, ts) {
     if (el) el.addEventListener('click', function() { arcActiveDay = day; });
   });
 })();
-</script></body></html>
+</script>
+<div class="look-switch" role="radiogroup" aria-label="Theme">
+  <button type="button" role="radio" data-look="original" aria-checked="false" tabindex="-1">Original</button>
+  <button type="button" role="radio" data-look="adele-1" aria-checked="true">Adele 1</button>
+  <button type="button" role="radio" data-look="adele-2" aria-checked="false" tabindex="-1">Adele 2</button>
+</div>
+<script src="js/look-switch.js"></script>
+</body></html>

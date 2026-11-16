@@ -1,0 +1,819 @@
+/*
+  Adele 2 — warm paper, ink outlines, hard offset shadows.
+  Steel Warehouse red is the only loud accent.
+  Roboto 400–800. Light and dark share the same red.
+*/
+
+:root,
+html[data-look="adele-2"],
+html[data-look="adele-2"][data-theme="light"] {
+  --paper: #F3EEE6;
+  --card: #FFFCF8;
+  --fill: #EDE6DC;
+  --ink: #17212E;
+  --sw-red: #ED1C24;
+  --sw-red-dark: #C81017;
+  --sw-ink: #17212E;
+  --sw-black: #17212E;
+  --sw-heading: #17212E;
+  --sw-text: #17212E;
+  --sw-line: #17212E;
+  --sw-line-strong: #17212E;
+  --sw-mist: #EDE6DC;
+  --sw-white: #FFFCF8;
+
+  --red: #ED1C24;
+  --red-dark: #C81017;
+  --black: #17212E;
+  --heading: #17212E;
+  --text: #17212E;
+  --line: #17212E;
+  --line-strong: #17212E;
+  --mist: #EDE6DC;
+  --white: #FFFCF8;
+
+  --bg: #F3EEE6;
+  --surface: #FFFCF8;
+  --surface2: #EDE6DC;
+  --border: #17212E;
+  --accent: #ED1C24;
+  --accent2: #17212E;
+  --warn: #17212E;
+  --danger: #17212E;
+  --muted: #5C6570;
+  --input: #FFFCF8;
+  --timing: #5C6570;
+  --done: #ED1C24;
+  --on-primary: #FFFCF8;
+
+  --red-08: #F8D6D7;
+  --red-12: #F8D6D7;
+  --red-15: #F8D6D7;
+  --red-20: color-mix(in srgb, #ED1C24 20%, #FFFCF8);
+  --ink-08: color-mix(in srgb, #17212E 8%, transparent);
+  --ink-12: color-mix(in srgb, #17212E 12%, transparent);
+  --black-10: rgba(23, 33, 46, 0.1);
+  --black-50: rgba(23, 33, 46, 0.5);
+  --black-75: rgba(23, 33, 46, 0.78);
+  --white-65: rgba(255, 252, 248, 0.65);
+  --white-85: rgba(255, 252, 248, 0.85);
+
+  /* Same palette, different roles. Red stays the only loud hue. */
+  --dept-sales: #ED1C24;
+  --dept-purchasing: #17212E;
+  --dept-planning: #5C6570;
+  --dept-scheduling: #17212E;
+  --dept-recording: #C81017;
+  --dept-transport: #5C6570;
+  --dept-receiving: #17212E;
+  --dept-production: #C81017;
+  --dept-quality: #ED1C24;
+  --dept-accounting: #5C6570;
+
+  --font-family: "Roboto", sans-serif;
+  --font: "Roboto", sans-serif;
+  --mono: "Roboto", sans-serif;
+  --weight-body: 400;
+  --weight-nav: 700;
+  --weight-button: 800;
+  --weight-heading: 800;
+
+  --eyebrow-size: 13px;
+  --eyebrow-line: 16px;
+  --eyebrow-spacing: 0.08em;
+  --hero-size: 64px;
+  --hero-line: 0.96;
+  --hero-size-phone: 40px;
+  --hero-line-phone: 1;
+  --intro-size: 56px;
+  --intro-line: 0.98;
+  --h2-size: 32px;
+  --h2-line: 1.15;
+  --h2-size-phone: 26px;
+  --h2-line-phone: 1.15;
+  --h2-small-size: 28px;
+  --h2-small-line: 1.15;
+  --h2-small-spacing: -0.03em;
+  --h2-small-size-phone: 22px;
+  --h2-small-line-phone: 1.2;
+  --card-title-size: 20px;
+  --card-title-line: 1.25;
+  --body-size: 16px;
+  --body-line: 1.5;
+  --nav-size: 14px;
+  --nav-line: 1.3;
+  --button-size: 16px;
+  --button-line: 1.2;
+  --button-spacing: 0;
+
+  --radius: 14px;
+  --radius-button: 999px;
+  --radius-card: 14px;
+  --radius-input: 14px;
+  --radius-photo: 14px;
+  --radius-pill: 999px;
+
+  --shadow-none: none;
+  --shadow-hard: 4px 4px 0 #17212E;
+  --shadow-header: 0 2px 0 #17212E;
+  --shadow-card: 4px 4px 0 #17212E;
+  --shadow-card-hover: 6px 6px 0 #17212E;
+  --shadow-news: 4px 4px 0 #17212E;
+  --shadow-input: 3px 3px 0 #17212E;
+
+  --gradient-primary: #ED1C24;
+  --gradient-hero: none;
+  --transition-primary: 0.15s ease;
+  --transition-outline: 0.15s ease;
+  --transition-card: 0.15s ease;
+  --transition-slider: 500ms;
+  --ease: ease;
+
+  --container: 1170px;
+  --section-pad-top: 36px;
+  --section-pad-bottom: 72px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --card-padding: 22px;
+  --news-side-padding: 25px;
+  --button-padding: 12px 22px;
+  --input-padding: 12px 16px;
+  --page-pad: 16px;
+  --header-height: 196px;
+  --util-height: auto;
+  --main-row-height: auto;
+  --logo-width: 185px;
+  --logo-height: 73px;
+  --logo-width-phone: 108px;
+  --logo-height-phone: 42px;
+  --footer-logo-width: 220px;
+  --footer-logo-height: 86px;
+  --footer-pad-top: 48px;
+  --footer-pad-bottom: 36px;
+  --hamburger-size: 24px;
+  --btn-primary-height: 48px;
+  --btn-outline-height: 48px;
+  --input-height: 48px;
+  --hit-min: 44px;
+  --progress-h: 10px;
+  --text-floor: 12px;
+  --review-pad: 12px 14px;
+
+  --intro-bg: #FFFCF8;
+  --intro-fg: #17212E;
+  --intro-heading: #17212E;
+  --intro-eyebrow: #5C6570;
+  --intro-bar: 0 solid transparent;
+  --intro-illus: #17212E;
+  --illus-display: block;
+  --illus-clear: block;
+  --illus-stroke: #17212E;
+  --illus-hero: 148px;
+  --header-rule: 0 solid transparent;
+  --control-border: 2px;
+
+  --red-small: #C81017;
+  --state-correct: #C81017;
+  --state-correct-large: #ED1C24;
+  --state-correct-bg: #F8D6D7;
+  --state-correct-border: #ED1C24;
+  --state-correct-fill: #ED1C24;
+  --on-correct: #FFFCF8;
+  --correct-line: 2px solid #ED1C24;
+  --correct-pad: 8px 12px;
+  --correct-mark: "\2713  ";
+  --state-wrong: #17212E;
+  --state-wrong-border: #17212E;
+  --state-wrong-bg: #FFFCF8;
+  --word-correct: none;
+  --word-wrong: " Not quite";
+  --check-anim: sw-check-in .35s ease;
+
+  --email-btn-bg: #ED1C24;
+  --email-btn-fg: #FFFCF8;
+  --fac-btn-bg: #FFFCF8;
+  --fac-btn-fg: #17212E;
+  --fac-btn-border: #17212E;
+  --fac-btn-hover: #ED1C24;
+  --fac-btn-hover-fg: #FFFCF8;
+
+  --cell-empty-bg: #FFFCF8;
+  --cell-empty-border: #17212E;
+  --cell-empty-fg: #17212E;
+  --cell-ondeck-bg: #EDE6DC;
+  --cell-ondeck-border: #17212E;
+  --cell-ondeck-fg: #17212E;
+  --cell-filled-bg: #F8D6D7;
+  --cell-filled-border: #ED1C24;
+  --cell-filled-fg: #17212E;
+  --cell-done-bg: #ED1C24;
+  --cell-done-border: #17212E;
+  --cell-done-fg: #FFFCF8;
+  --cell-focus-bg: #FFFCF8;
+
+  --confetti: on;
+  --quiz-celebrate: confetti;
+  --celebrate-1: #ED1C24;
+  --celebrate-2: #17212E;
+  --celebrate-3: #F3EEE6;
+  --celebrate-4: #C81017;
+  --celebrate-5: #FFFCF8;
+
+  --placeholder: #5C6570;
+}
+
+html[data-look="adele-2"][data-theme="dark"] {
+  --paper: #12171F;
+  --card: #1C2430;
+  --fill: #283140;
+  --ink: #F3EEE6;
+  --bg: #12171F;
+  --surface: #1C2430;
+  --surface2: #283140;
+  --border: #F3EEE6;
+  --text: #F3EEE6;
+  --heading: #F3EEE6;
+  --muted: #B7C0CB;
+  --input: #1C2430;
+  --accent2: #F3EEE6;
+  --warn: #F3EEE6;
+  --danger: #F3EEE6;
+  --timing: #B7C0CB;
+
+  --sw-ink: #F3EEE6;
+  --sw-black: #0C1016;
+  --sw-heading: #F3EEE6;
+  --sw-text: #F3EEE6;
+  --sw-line: #F3EEE6;
+  --sw-line-strong: #F3EEE6;
+  --sw-mist: #283140;
+  --sw-white: #1C2430;
+
+  --ink: #F3EEE6;
+  --black: #0C1016;
+  --line: #F3EEE6;
+  --line-strong: #F3EEE6;
+  --mist: #283140;
+  --white: #1C2430;
+
+  --shadow-hard: 4px 4px 0 #F3EEE6;
+  --shadow-header: 0 2px 0 #F3EEE6;
+  --shadow-card: 4px 4px 0 #F3EEE6;
+  --shadow-card-hover: 6px 6px 0 #F3EEE6;
+  --shadow-input: 3px 3px 0 #F3EEE6;
+
+  --intro-bg: #1C2430;
+  --intro-fg: #F3EEE6;
+  --intro-heading: #F3EEE6;
+  --intro-eyebrow: #B7C0CB;
+  --intro-illus: #F3EEE6;
+  --illus-stroke: #F3EEE6;
+  --red-small: #FF8A8D;
+  --state-correct: #FF8A8D;
+  --state-correct-bg: color-mix(in srgb, #ED1C24 28%, #1C2430);
+  --state-correct-border: #ED1C24;
+  --state-wrong: #F3EEE6;
+  --state-wrong-border: #F3EEE6;
+  --state-wrong-bg: #1C2430;
+  --fac-btn-bg: #1C2430;
+  --fac-btn-fg: #F3EEE6;
+  --fac-btn-border: #F3EEE6;
+  --cell-empty-bg: #1C2430;
+  --cell-empty-border: #F3EEE6;
+  --cell-empty-fg: #F3EEE6;
+  --cell-ondeck-bg: #283140;
+  --cell-ondeck-border: #F3EEE6;
+  --cell-ondeck-fg: #F3EEE6;
+  --cell-filled-bg: color-mix(in srgb, #ED1C24 24%, #1C2430);
+  --cell-filled-fg: #F3EEE6;
+  --cell-focus-bg: #1C2430;
+  --celebrate-2: #F3EEE6;
+  --celebrate-3: #ED1C24;
+  --celebrate-5: #FFFCF8;
+  --placeholder: #B7C0CB;
+
+  --dept-purchasing: #F3EEE6;
+  --dept-planning: #B7C0CB;
+  --dept-scheduling: #F3EEE6;
+  --dept-transport: #B7C0CB;
+  --dept-receiving: #F3EEE6;
+  --dept-accounting: #B7C0CB;
+}
+
+html[data-look="adele-2"] body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+html[data-look="adele-2"] .sw-header,
+html[data-look="adele-2"] .sw-util,
+html[data-look="adele-2"] .sw-main,
+html[data-look="adele-2"] .sidebar,
+html[data-look="adele-2"] .gloss-panel {
+  background: var(--surface);
+  color: var(--text);
+}
+
+html[data-look="adele-2"] .sw-util,
+html[data-look="adele-2"] .sw-main,
+html[data-look="adele-2"] .sw-util-inner,
+html[data-look="adele-2"] .sw-main-inner {
+  height: auto;
+}
+
+html[data-look="adele-2"] .sw-util-inner,
+html[data-look="adele-2"] .sw-main-inner {
+  flex-wrap: wrap;
+  row-gap: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+html[data-look="adele-2"] .sw-util-actions {
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+html[data-look="adele-2"] .sw-main {
+  border-bottom: 2px solid var(--ink);
+  box-shadow: none !important;
+}
+
+html[data-look="adele-2"] .day-tabs,
+html[data-look="adele-2"] .tabs {
+  flex: 1 1 100%;
+  margin-left: 0;
+  height: auto;
+  overflow: visible;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+html[data-look="adele-2"] .sw-wordmark,
+html[data-look="adele-2"] .day-tab,
+html[data-look="adele-2"] .tab,
+html[data-look="adele-2"] .nav-item,
+html[data-look="adele-2"] .theme-toggle-btn,
+html[data-look="adele-2"] .gloss-btn,
+html[data-look="adele-2"] .user-badge,
+html[data-look="adele-2"] .session-timer {
+  color: var(--ink);
+}
+
+html[data-look="adele-2"] .theme-toggle-btn,
+html[data-look="adele-2"] .gloss-btn,
+html[data-look="adele-2"] .user-badge,
+html[data-look="adele-2"] .session-timer {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 2px solid var(--ink);
+  border-radius: 999px !important;
+  background: var(--surface);
+}
+
+html[data-look="adele-2"] .day-tab.active,
+html[data-look="adele-2"] .tab.active {
+  background: var(--sw-red);
+  color: var(--on-primary);
+  border: 2px solid var(--ink);
+  border-radius: 999px !important;
+  box-shadow: 3px 3px 0 var(--ink) !important;
+}
+
+html[data-look="adele-2"] .day-tab,
+html[data-look="adele-2"] .tab {
+  border-bottom: 0;
+  border-radius: 999px !important;
+  padding: 8px 12px;
+}
+
+html[data-look="adele-2"] .icard,
+html[data-look="adele-2"] .intro-card,
+html[data-look="adele-2"] .cc,
+html[data-look="adele-2"] .quiz-card,
+html[data-look="adele-2"] .sc,
+html[data-look="adele-2"] .sc-card,
+html[data-look="adele-2"] .up-card,
+html[data-look="adele-2"] .ex-card,
+html[data-look="adele-2"] .ot-btn,
+html[data-look="adele-2"] .ot-detail,
+html[data-look="adele-2"] .mem-wrap,
+html[data-look="adele-2"] .seq-wrap,
+html[data-look="adele-2"] .ds-wrap,
+html[data-look="adele-2"] .login-card,
+html[data-look="adele-2"] .modal,
+html[data-look="adele-2"] .stat,
+html[data-look="adele-2"] .rslide,
+html[data-look="adele-2"] .spin-zone {
+  background: var(--surface);
+  border: 2px solid var(--ink) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-hard) !important;
+  color: var(--text);
+}
+
+html[data-look="adele-2"] .sw-hero.icard,
+html[data-look="adele-2"] .sw-hero.intro-card {
+  background: var(--surface);
+  border-top: 2px solid var(--ink);
+}
+
+html[data-look="adele-2"] .sw-hero h2,
+html[data-look="adele-2"] .icard h2,
+html[data-look="adele-2"] .intro-card h2 {
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  color: var(--heading);
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 0.98;
+}
+
+/* Day 1 uses the approved punchy line. The real heading stays for assistive tech. */
+html[data-look="adele-2"] #day1-view .icard.sw-hero > h2 {
+  font-size: 0;
+  line-height: 0;
+}
+
+html[data-look="adele-2"] #day1-view .icard.sw-hero > h2::before {
+  content: "Get comfortable in Invex.";
+  display: block;
+  font-size: clamp(42px, 5.6vw, 68px);
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  color: var(--heading);
+}
+
+html[data-look="adele-2"] .sw-hero p,
+html[data-look="adele-2"] .icard p,
+html[data-look="adele-2"] .cb,
+html[data-look="adele-2"] .oi,
+html[data-look="adele-2"] .quiz-desc {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+html[data-look="adele-2"] .sw-illus {
+  color: var(--ink);
+}
+
+html[data-look="adele-2"] .sw-illus path,
+html[data-look="adele-2"] .sw-illus ellipse,
+html[data-look="adele-2"] .sw-illus rect,
+html[data-look="adele-2"] .sw-illus circle,
+html[data-look="adele-2"] .sw-illus line {
+  stroke-width: 2.25;
+}
+
+html[data-look="adele-2"] .cc .sw-illus {
+  float: none;
+  display: block;
+  width: 128px;
+  height: 78px;
+  margin: 0 0 12px;
+}
+
+/* TED-Ed topic pills */
+html[data-look="adele-2"] .ct,
+html[data-look="adele-2"] .gtag,
+html[data-look="adele-2"] .gf-btn,
+html[data-look="adele-2"] .gloss-cat-btn,
+html[data-look="adele-2"] .badge {
+  border: 2px solid var(--ink) !important;
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border-radius: 999px !important;
+  box-shadow: 2px 2px 0 var(--ink) !important;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  min-height: 32px;
+}
+
+html[data-look="adele-2"] .gf-btn {
+  width: 100%;
+  justify-content: flex-start;
+  min-height: 44px;
+  margin-bottom: 8px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 14px;
+}
+
+html[data-look="adele-2"] .gf-btn.is-on,
+html[data-look="adele-2"] .gloss-cat-btn.active,
+html[data-look="adele-2"] .badge-day {
+  background: var(--sw-red) !important;
+  color: var(--on-primary) !important;
+  border-color: var(--ink) !important;
+}
+
+html[data-look="adele-2"] .nav-item.act,
+html[data-look="adele-2"] .nav-item.active {
+  background: var(--fill);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 999px !important;
+  box-shadow: 2px 2px 0 var(--ink) !important;
+}
+
+html[data-look="adele-2"] .is,
+html[data-look="adele-2"] .istat {
+  background: var(--fill);
+  border: 2px solid var(--ink);
+  border-radius: 14px !important;
+  box-shadow: 3px 3px 0 var(--ink) !important;
+}
+
+html[data-look="adele-2"] .is-v,
+html[data-look="adele-2"] .quiz-stat-v,
+html[data-look="adele-2"] .prog-pct {
+  color: var(--sw-red);
+}
+
+html[data-look="adele-2"] .sched .sb,
+html[data-look="adele-2"] .schedule .sched-block {
+  background: #17212E !important;
+  color: #F3EEE6;
+}
+
+html[data-look="adele-2"] .sb .sl,
+html[data-look="adele-2"] .sb .st,
+html[data-look="adele-2"] .sched-block .sl,
+html[data-look="adele-2"] .sched-block .st {
+  color: #F3EEE6 !important;
+}
+
+html[data-look="adele-2"] .quiz-progress-wrap,
+html[data-look="adele-2"] .prog-bar-outer,
+html[data-look="adele-2"] .lp-prog-bar-outer {
+  background: var(--fill);
+  border: 2px solid var(--ink);
+  border-radius: 999px !important;
+  height: 12px;
+}
+
+html[data-look="adele-2"] .quiz-progress-bar,
+html[data-look="adele-2"] .prog-bar-inner,
+html[data-look="adele-2"] .lp-prog-bar-inner {
+  background: var(--sw-red);
+  border-radius: 999px !important;
+}
+
+html[data-look="adele-2"] .login-btn,
+html[data-look="adele-2"] .quiz-start-btn,
+html[data-look="adele-2"] .quiz-next-btn,
+html[data-look="adele-2"] .btn-p,
+html[data-look="adele-2"] .quiz-email-btn {
+  background: var(--sw-red);
+  color: var(--on-primary);
+  border: 2px solid var(--ink);
+  border-radius: 999px !important;
+  box-shadow: var(--shadow-hard) !important;
+  text-transform: none;
+  font-weight: 800;
+  min-height: 48px;
+}
+
+html[data-look="adele-2"] .login-btn:hover,
+html[data-look="adele-2"] .quiz-start-btn:hover,
+html[data-look="adele-2"] .quiz-next-btn:hover,
+html[data-look="adele-2"] .btn-p:hover,
+html[data-look="adele-2"] .quiz-email-btn:hover {
+  background: var(--sw-red-dark);
+  color: var(--on-primary);
+}
+
+html[data-look="adele-2"] .quiz-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 12px 18px;
+  align-items: start;
+}
+
+html[data-look="adele-2"] .quiz-stage { grid-column: 1; }
+html[data-look="adele-2"] .quiz-coach {
+  grid-column: 2;
+  grid-row: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 168px;
+  color: var(--ink);
+}
+
+html[data-look="adele-2"] .quiz-coach-coil {
+  width: 84px;
+  height: 84px;
+}
+
+html[data-look="adele-2"] .quiz-coach-bubble {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-hard);
+  padding: 12px 14px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.35;
+  position: relative;
+}
+
+html[data-look="adele-2"] .quiz-coach-bubble::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 28px;
+  border: 6px solid transparent;
+  border-bottom-color: var(--ink);
+}
+
+html[data-look="adele-2"] .quiz-opt-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 10px 14px;
+  background: var(--surface);
+  color: var(--ink);
+  border: 2px solid var(--ink) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-hard) !important;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: left;
+  text-transform: none;
+}
+
+html[data-look="adele-2"] .quiz-opt-label {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--ink);
+  border-radius: 10px !important;
+  background: var(--fill);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 16px;
+}
+
+html[data-look="adele-2"] .quiz-opt-btn.selected:not(.is-right):not(.is-wrong) {
+  background: var(--fill);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink) !important;
+}
+
+html[data-look="adele-2"] .quiz-opt-btn.is-right {
+  background: #F8D6D7;
+  border-color: #ED1C24 !important;
+  box-shadow: 4px 4px 0 #ED1C24 !important;
+  color: var(--ink);
+}
+
+html[data-look="adele-2"][data-theme="dark"] .quiz-opt-btn.is-right {
+  background: color-mix(in srgb, #ED1C24 28%, #1C2430);
+  color: #F3EEE6;
+}
+
+html[data-look="adele-2"] .quiz-opt-btn.is-right .quiz-opt-label {
+  background: var(--sw-red);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+/* Wrong stays ink. Never red. */
+html[data-look="adele-2"] .quiz-opt-btn.is-wrong {
+  background: var(--surface);
+  border-color: var(--ink) !important;
+  color: var(--ink);
+  box-shadow: var(--shadow-hard) !important;
+}
+
+html[data-look="adele-2"] .quiz-opt-btn.is-wrong::after {
+  content: "✗";
+  margin-left: auto;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+html[data-look="adele-2"] .quiz-feedback.show {
+  margin: 4px 0 12px;
+  padding: 12px 14px;
+  border-radius: 14px !important;
+  border: 2px solid var(--ink);
+  font-weight: 800;
+  font-size: 16px;
+}
+
+html[data-look="adele-2"] .quiz-feedback.is-right {
+  background: #F8D6D7;
+  border-color: #ED1C24;
+  color: #C81017;
+  box-shadow: 4px 4px 0 #ED1C24;
+}
+
+html[data-look="adele-2"][data-theme="dark"] .quiz-feedback.is-right {
+  background: color-mix(in srgb, #ED1C24 28%, #1C2430);
+  color: #FF8A8D;
+}
+
+html[data-look="adele-2"] .quiz-feedback.is-wrong {
+  background: var(--surface);
+  border-color: var(--ink);
+  color: var(--ink);
+  box-shadow: var(--shadow-hard);
+}
+
+html[data-look="adele-2"] .quiz-feedback.is-wrong::before {
+  content: "✗ ";
+}
+
+html[data-look="adele-2"] .quiz-review-item.qcorrect {
+  background: #F8D6D7;
+  border: 2px solid #ED1C24;
+  border-radius: 14px !important;
+}
+
+html[data-look="adele-2"] .quiz-review-item.qcorrect .quiz-review-q::after {
+  content: "Nice work.";
+  display: block;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #FFFCF8;
+  border: 2px solid #ED1C24;
+  border-radius: 12px !important;
+  color: #C81017;
+  font-weight: 800;
+}
+
+html[data-look="adele-2"] .quiz-review-item.qwrong {
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  border-radius: 14px !important;
+}
+
+html[data-look="adele-2"] .quiz-review-item.qwrong .quiz-review-icon,
+html[data-look="adele-2"] .quiz-review-ans,
+html[data-look="adele-2"] .quiz-result-header.fail,
+html[data-look="adele-2"] .quiz-result-header.fail .quiz-result-score,
+html[data-look="adele-2"] .quiz-result-header.fail .quiz-result-label,
+html[data-look="adele-2"] .quiz-status-fail {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+html[data-look="adele-2"] .di.ck .dck,
+html[data-look="adele-2"] .step-check.ck,
+html[data-look="adele-2"] .debrief-item.ck .d-check {
+  background: var(--sw-red);
+  border-color: var(--ink);
+}
+
+html[data-look="adele-2"] .sw-footer {
+  background: var(--ink);
+  color: var(--paper);
+  border-top: 2px solid var(--ink);
+}
+
+html[data-look="adele-2"][data-theme="dark"] .sw-footer {
+  background: #0C1016;
+  color: #F3EEE6;
+  border-top: 2px solid #F3EEE6;
+}
+
+html[data-look="adele-2"] input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="hidden"]),
+html[data-look="adele-2"] select,
+html[data-look="adele-2"] textarea {
+  background: var(--input);
+  color: var(--text);
+  border: 2px solid var(--ink) !important;
+  border-radius: 14px !important;
+  box-shadow: 3px 3px 0 var(--ink) !important;
+}
+
+@media (max-width: 900px) {
+  html[data-look="adele-2"] .quiz-card { grid-template-columns: 1fr; }
+  html[data-look="adele-2"] .quiz-coach {
+    grid-column: 1;
+    grid-row: 1;
+    flex-direction: row;
+    position: static;
+  }
+  html[data-look="adele-2"] .quiz-stage { grid-column: 1; grid-row: 2; }
+  html[data-look="adele-2"] .quiz-coach-bubble::before { display: none; }
+}

@@ -1,0 +1,71 @@
+/* Shared theme switcher. Loaded after the active theme so the control stays reachable. */
+
+.look-switch {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 260;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  margin: 0;
+  background: var(--surface, #fff);
+  color: var(--text, #17212e);
+  border: 2px solid var(--ink, var(--heading, #17212e));
+  border-radius: 999px !important;
+  box-shadow: 0 8px 24px rgba(23, 33, 46, 0.18);
+  font-family: var(--font-family, Roboto, sans-serif) !important;
+}
+
+.look-switch button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px !important;
+  background: transparent;
+  color: inherit;
+  font-family: inherit !important;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  cursor: pointer;
+  box-shadow: none !important;
+}
+
+.look-switch button[aria-checked="true"] {
+  background: var(--accent, #ed1c24);
+  color: #fff;
+}
+
+.look-switch button:hover {
+  background: color-mix(in srgb, var(--accent, #ed1c24) 14%, transparent);
+  color: inherit;
+}
+
+.look-switch button[aria-checked="true"]:hover {
+  background: var(--accent, #ed1c24);
+  color: #fff;
+}
+
+.look-switch button:focus-visible {
+  outline: 2px solid var(--accent, #ed1c24);
+  outline-offset: 2px;
+}
+
+/* Keep facilitator controls clear of the pill. */
+.fac-toggle-btn { bottom: 84px; }
+.fac-cfg-launch { bottom: 140px; }
+
+/* Empty until someone signs in. A bordered pill would otherwise show as a blank chip. */
+.user-badge:empty { display: none !important; }
+
+/* Coach is part of the quiz markup and only shows in Adele 2. */
+.quiz-coach { display: none; }
+html[data-look="adele-2"] .quiz-coach { display: flex; }
+
+.quiz-feedback { display: none; }
+.quiz-feedback.show { display: block; }
