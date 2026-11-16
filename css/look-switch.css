@@ -60,23 +60,40 @@
 .fac-toggle-btn { bottom: 84px; }
 .fac-cfg-launch { bottom: 140px; }
 
-/* The fixed facilitator control covers the last checklist rows on a phone.
-   Extra bottom space applies in every look. */
+/* On a phone the switcher sits in the header menu, so only the facilitator
+   button is fixed. One control, plus room to scroll the last checklist row clear. */
 @media (max-width: 767px) {
+  .look-switch.is-in-menu {
+    display: none;
+    position: static;
+    right: auto;
+    bottom: auto;
+    z-index: auto;
+    margin: 8px 16px 12px;
+    box-shadow: none;
+    max-width: 100%;
+  }
+  .day-tabs.is-open .look-switch.is-in-menu,
+  .tabs.is-open .look-switch.is-in-menu {
+    display: flex;
+  }
+  /* Adele 1: the open menu ends on the pill, so a line of page text peeks through.
+     Extra bottom padding stays on the absolute panel and does not grow the closed header. */
+  html[data-look="adele-1"] .day-tabs.is-open,
+  html[data-look="adele-1"] .sw-header .tabs.is-open {
+    padding-bottom: 16px;
+  }
   body {
-    padding-bottom: calc(148px + env(safe-area-inset-bottom));
+    padding-bottom: calc(72px + env(safe-area-inset-bottom));
   }
   .main {
-    padding-bottom: calc(168px + env(safe-area-inset-bottom));
-  }
-  .look-switch {
-    bottom: calc(12px + env(safe-area-inset-bottom));
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
   }
   .fac-toggle-btn {
-    bottom: calc(76px + env(safe-area-inset-bottom));
+    bottom: calc(12px + env(safe-area-inset-bottom));
   }
   .fac-cfg-launch {
-    bottom: calc(132px + env(safe-area-inset-bottom));
+    bottom: calc(64px + env(safe-area-inset-bottom));
   }
 }
 
