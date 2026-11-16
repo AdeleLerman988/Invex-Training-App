@@ -249,7 +249,18 @@
   --cell-done-fg: var(--sw-white);
   --cell-focus-bg: var(--sw-white);
 
+  /*
+    Quiz pass. sparks is the torch burst (pieces stay in the palette;
+    amber is spark glow only). confetti would use the library burst.
+    off plays nothing. --confetti: off keeps that library from running
+    on this theme. See THEMING.md.
+  */
+  --quiz-celebrate: sparks;
   --confetti: off;
+  --spark-core: var(--sw-white);
+  --spark-amber: #FFB020;
+  --spark-ember: var(--sw-red);
+  --spark-tail: var(--sw-red-dark);
 }
 
 /* Pill alignment. Loaded only with this theme, so the base theme keeps its own display. */
@@ -322,4 +333,67 @@
   --email-btn-fg: var(--sw-white);
   --fac-btn-bg: var(--sw-red);
   --fac-btn-fg: var(--sw-white);
+}
+
+/*
+  Quiz-pass celebration for this theme only. The script reads
+  --quiz-celebrate and builds the canvas. These rules style the stamp
+  and keep the burst from blocking the page. prefers-reduced-motion
+  leaves the stamp in place and hides any canvas.
+*/
+.quiz-pass-sparks {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 70;
+  background: transparent;
+}
+
+.quiz-pass-stamp {
+  position: fixed;
+  left: 50%;
+  top: 42%;
+  z-index: 71;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  margin: 0;
+  padding: 12px 22px;
+  border: 1px solid var(--sw-red-dark);
+  border-radius: var(--radius);
+  background: var(--sw-red);
+  color: var(--sw-white);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-family);
+  font-weight: var(--weight-heading);
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  animation: quiz-pass-thud 2.2s linear forwards;
+}
+
+.quiz-pass-stamp.is-static {
+  animation: none;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes quiz-pass-thud {
+  0% { opacity: 0; transform: translate(-50%, -68%) scale(1.7) rotate(-8deg); }
+  8% { opacity: 1; transform: translate(-50%, -47%) scale(0.9) rotate(2deg); }
+  14% { opacity: 1; transform: translate(-50%, -50%) scale(1.04) rotate(-0.6deg); }
+  20% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  70% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-pass-sparks { display: none !important; }
+  .quiz-pass-stamp,
+  .quiz-pass-stamp.is-static {
+    animation: none !important;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }

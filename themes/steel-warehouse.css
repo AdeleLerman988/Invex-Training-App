@@ -180,6 +180,12 @@
   --timing: var(--sw-heading);
   --done: var(--sw-ink);
   --on-primary: var(--sw-white);
+
+  /*
+    Quiz pass. confetti keeps the canvas-confetti burst in index.html.
+    The sister theme sets sparks. off plays nothing. See THEMING.md.
+  */
+  --quiz-celebrate: confetti;
 }
 
 /*

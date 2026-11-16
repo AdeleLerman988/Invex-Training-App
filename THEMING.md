@@ -23,9 +23,9 @@ Light and dark are separate from the look. The existing Dark / Light button stil
 Switching sets that `href` and two attributes on `<html>`:
 
 - `data-look`: `original`, `adele-1`, or `adele-2`
-- `data-quiz-celebrate`: `original`, `spark`, or `confetti`
+- `data-quiz-celebrate`: `original`, `sparks`, or `confetti`
 
-`spark` is Adele 1. The quiz check animation runs, and canvas confetti does not. `original` and `confetti` read `--celebrate-1` through `--celebrate-5`. `--confetti: off` or `--quiz-celebrate: spark` also keeps confetti off, so Adele 1 stays on the check animation even if the attribute is missing.
+The quiz reads `--quiz-celebrate` from the active theme when a result is shown. Adele 1 sets `sparks` (torch burst and a Passed stamp). Adele 2 sets `confetti` and plays red, ink, and cream. Original sets `original` and plays the pre-redesign confetti colors. `off`, or `--confetti: off` on a theme that is not `sparks`, plays no canvas burst.
 
 The control is a radiogroup. Arrow keys move between Original, Adele 1, and Adele 2. Each option is at least 44px.
 
@@ -57,9 +57,11 @@ Rules for this look:
 - Radius is 6px everywhere, from `--radius`. Pills and chips use `--radius-pill`.
 - Borders are 1px. Shadows stay `0 4px 8px rgba(0, 0, 0, 0.10)`.
 - Red means correct. A correct answer uses a red border, a check icon, the word "Correct", and a short check animation. The animation is off when `prefers-reduced-motion` is set.
-- A wrong answer is not red. It uses an ink or heading border, a ✗ icon, and the words "Not quite". Color is always paired with an icon and a word.
-- Small red text uses `--red-dark` (`#C81017`). `#ED1C24` is for fills, borders, and large text.
+- A wrong answer is not red. It uses an ink or heading border, a ✗ icon, and the words "Not quite". The right answer is then shown in the red correct style. Color is always paired with an icon and a word.
+- Small red text uses `--red-dark` (`#C81017`) so it stays readable on white. `#ED1C24` is for fills, borders, and large text. On the ink hero band, small labels are white, with a red bar as the accent.
 - The day intro is an ink (`#17212E`) band in light mode.
+- A passed quiz reads `--quiz-celebrate`. This theme sets `--quiz-celebrate: sparks`. `--confetti: off` still suppresses the library burst, and sparks run instead. `sparks` is a canvas burst under 2.5 seconds. It does not block clicks. Streaks are cutting-torch sparks: bright white to amber to red, with gravity and fade. Amber (`--spark-amber`) and white are spark glow only. Mixed in are small steel pieces — thin sheet strips, coil rings, and rivets — colored only with red `#ED1C24`, red-dark `#C81017`, ink `#17212E`, steel grays `#D1D1D1` / `#E6E6E6` / `#3C3C3C`, and white. A red Passed stamp (Roboto 800, white type, 6px radius from `--radius`) thuds in over the burst and then leaves.
+- When `prefers-reduced-motion` is set, `sparks` shows only that stamp, already at rest. No canvas, no particles, and no thud. The stamp is removed with the rest of the celebration, without a fade.
 
 ### Adele 1 dark: Foundry
 

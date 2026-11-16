@@ -14,7 +14,7 @@
 <script>/* Apply the saved look and light/dark before first paint. Adele 1 stays the default. */
 (function(){
   var LOOKS={original:'themes/original.css','adele-1':'themes/steel-warehouse-training.css','adele-2':'themes/adele-2.css'};
-  var CELEB={original:'original','adele-1':'spark','adele-2':'confetti'};
+  var CELEB={original:'original','adele-1':'sparks','adele-2':'confetti'};
   var key='adele-1', theme=null;
   try { key=localStorage.getItem('invex_look')||'adele-1'; theme=localStorage.getItem('invex_theme'); } catch (e) {}
   if(!LOOKS[key]) key='adele-1';
@@ -7302,19 +7302,307 @@ function qzShowResult(day, score, answers, questions) {
     '<div class="quiz-result-actions"><a href="'+mailHref+'" class="quiz-email-btn">Email Results to Facilitator</a>'+retryBtn+'</div>' +
     '<div>'+reviewHtml+'</div>';
   resultEl.style.display = 'block';
-  var celebMode = document.documentElement.getAttribute('data-quiz-celebrate') || '';
-  var celebToken = getComputedStyle(document.documentElement).getPropertyValue('--quiz-celebrate').trim();
-  var confettiFlag = getComputedStyle(document.documentElement).getPropertyValue('--confetti').trim();
-  var spark = celebMode === 'spark' || celebToken === 'spark' || confettiFlag === 'off';
-  if(passed && !spark && typeof confetti !== 'undefined'){
-    var colors = [1,2,3,4,5].map(function(i){ return swHex('--celebrate-'+i); }).filter(function(c){ return c && c !== 'transparent'; });
-    if(colors.length < 2) colors = [swHex('--sw-red'),swHex('--sw-ink'),swHex('--sw-heading'),swHex('--sw-black'),swHex('--sw-red-dark')];
-    setTimeout(function(){
-      confetti({particleCount:140,spread:80,origin:{y:0.55},colors:colors});
-      setTimeout(function(){ confetti({particleCount:60,spread:50,origin:{y:0.5,x:0.2},colors:colors}); },400);
-      setTimeout(function(){ confetti({particleCount:60,spread:50,origin:{y:0.5,x:0.8},colors:colors}); },600);
-    },300);
+  if(passed) setTimeout(celebrateQuizPass, 300);
+}
+
+/* Quiz-pass celebration. The active theme picks the mode. */
+var steelPassRun = 0;
+var steelPassStampTimer = 0;
+
+function celebrateQuizPass(){
+  var style = getComputedStyle(document.documentElement);
+  var mode = style.getPropertyValue('--quiz-celebrate').trim();
+  var legacy = style.getPropertyValue('--confetti').trim();
+  var attr = (document.documentElement.getAttribute('data-quiz-celebrate') || '').trim();
+  if(!mode) mode = attr;
+  if(mode === 'spark') mode = 'sparks';
+  if(mode === 'sparks'){
+    launchSteelQuizPass();
+    return;
   }
+  if(mode === 'off' || legacy === 'off') return;
+  if(typeof confetti === 'undefined') return;
+  var colors = [1,2,3,4,5].map(function(i){ return swHex('--celebrate-'+i); }).filter(function(c){ return c && c !== 'transparent'; });
+  if(colors.length < 2) colors = [swHex('--sw-red'),swHex('--sw-ink'),swHex('--sw-heading'),swHex('--sw-black'),swHex('--sw-red-dark')];
+  confetti({particleCount:140,spread:80,origin:{y:0.55},colors:colors});
+  setTimeout(function(){ confetti({particleCount:60,spread:50,origin:{y:0.5,x:0.2},colors:colors}); },400);
+  setTimeout(function(){ confetti({particleCount:60,spread:50,origin:{y:0.5,x:0.8},colors:colors}); },600);
+}
+
+function launchSteelQuizPass(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  placeQuizPassStamp(!!reduce);
+  if(reduce) return;
+
+  var prev = document.querySelector('.quiz-pass-sparks');
+  if(prev) prev.remove();
+  var run = ++steelPassRun;
+  var canvas = document.createElement('canvas');
+  canvas.className = 'quiz-pass-sparks';
+  canvas.setAttribute('aria-hidden', 'true');
+  var w = window.innerWidth || document.documentElement.clientWidth || 800;
+  var h = window.innerHeight || document.documentElement.clientHeight || 600;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = Math.max(1, Math.floor(w * dpr));
+  canvas.height = Math.max(1, Math.floor(h * dpr));
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  document.body.appendChild(canvas);
+  var ctx = canvas.getContext('2d');
+  if(!ctx){
+    canvas.remove();
+    return;
+  }
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  function readRgb(name, fallback){
+    var raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    var hex = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(raw);
+    if(hex){
+      var hv = hex[1];
+      if(hv.length === 3) hv = hv[0]+hv[0]+hv[1]+hv[1]+hv[2]+hv[2];
+      var n = parseInt(hv, 16);
+      return [(n>>16)&255, (n>>8)&255, n&255];
+    }
+    var rgb = /rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)/i.exec(raw);
+    if(rgb) return [+rgb[1], +rgb[2], +rgb[3]];
+    return fallback;
+  }
+  function mix(a, b, t){
+    return [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t, a[2]+(b[2]-a[2])*t];
+  }
+  function rgba(c, a){
+    return 'rgba('+Math.round(c[0])+','+Math.round(c[1])+','+Math.round(c[2])+','+a+')';
+  }
+  var white = readRgb('--sw-white', [255,255,255]);
+  var core = readRgb('--spark-core', white);
+  var amber = readRgb('--spark-amber', core);
+  var ember = readRgb('--spark-ember', readRgb('--sw-red', [237,28,36]));
+  var tail = readRgb('--spark-tail', readRgb('--sw-red-dark', [200,16,23]));
+  var pieceColors = [
+    readRgb('--sw-red', [237,28,36]),
+    readRgb('--sw-red-dark', [200,16,23]),
+    readRgb('--sw-ink', [23,33,46]),
+    readRgb('--sw-line-strong', [209,209,209]),
+    readRgb('--sw-line', [230,230,230]),
+    readRgb('--sw-heading', [60,60,60]),
+    white
+  ];
+  var edge = readRgb('--sw-heading', [60,60,60]);
+
+  function sparkTint(age){
+    if(age < 0.28) return mix(core, amber, age / 0.28);
+    if(age < 0.62) return mix(amber, ember, (age - 0.28) / 0.34);
+    return mix(ember, tail, Math.min(1, (age - 0.62) / 0.38));
+  }
+
+  var sparks = [];
+  var pieces = [];
+  var flashes = [];
+  var bursts = [
+    {t:0, x:0.50, y:0.40, sparks:92, pieces:16, speed:780, done:false},
+    {t:0.16, x:0.24, y:0.52, sparks:54, pieces:8, speed:700, done:false},
+    {t:0.34, x:0.76, y:0.46, sparks:54, pieces:8, speed:720, done:false}
+  ];
+
+  function emitBurst(b){
+    b.done = true;
+    var ox = b.x * w, oy = b.y * h;
+    flashes.push({x:ox, y:oy, life:0.16, max:0.16});
+    var i, a, s, tone;
+    for(i=0;i<b.sparks;i++){
+      a = Math.random() * Math.PI * 2;
+      s = b.speed * (0.35 + Math.random() * 0.85);
+      tone = Math.random();
+      sparks.push({
+        x: ox + (Math.random()-0.5) * 14,
+        y: oy + (Math.random()-0.5) * 10,
+        vx: Math.cos(a) * s,
+        vy: Math.sin(a) * s - b.speed * 0.22,
+        life: 0.55 + Math.random() * 0.7,
+        age: 0,
+        w: tone > 0.82 ? 2.1 + Math.random() * 0.8 : 1 + Math.random() * 0.7,
+        stretch: 0.03 + Math.random() * 0.025
+      });
+    }
+    for(i=0;i<b.pieces;i++){
+      a = Math.random() * Math.PI * 2;
+      s = 160 + Math.random() * 280;
+      pieces.push({
+        kind: i % 4 === 0 ? 'ring' : (i % 4 === 1 ? 'rivet' : 'strip'),
+        x: ox + (Math.random()-0.5) * 20,
+        y: oy + (Math.random()-0.5) * 12,
+        vx: Math.cos(a) * s,
+        vy: Math.sin(a) * s - 40,
+        life: 1.2 + Math.random() * 0.55,
+        age: 0,
+        rot: Math.random() * Math.PI,
+        spin: (Math.random()-0.5) * 9,
+        len: 16 + Math.random() * 22,
+        thick: 2.5 + Math.random() * 2.2,
+        rad: 4 + Math.random() * 4.5,
+        color: pieceColors[(Math.random() * pieceColors.length) | 0]
+      });
+    }
+  }
+
+  function drawFlash(f, dt){
+    f.life -= dt;
+    if(f.life <= 0) return false;
+    var a = Math.max(0, f.life / f.max);
+    var g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, 110);
+    g.addColorStop(0, rgba(core, 0.85 * a));
+    g.addColorStop(0.35, rgba(amber, 0.45 * a));
+    g.addColorStop(1, rgba(amber, 0));
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(f.x, f.y, 110, 0, Math.PI * 2);
+    ctx.fill();
+    return true;
+  }
+
+  function drawSpark(p, dt){
+    p.age += dt;
+    if(p.age >= p.life) return false;
+    p.vy += 1280 * dt;
+    p.vx *= Math.exp(-0.55 * dt);
+    p.x += p.vx * dt;
+    p.y += p.vy * dt;
+    var age = p.age / p.life;
+    var alpha = Math.pow(1 - age, 1.15);
+    if(p.age < 0.04) alpha *= p.age / 0.04;
+    var tint = sparkTint(age);
+    var head = age < 0.45 ? mix(tint, core, 0.55 * (1 - age / 0.45)) : tint;
+    var back = mix(tint, tail, 0.55);
+    var speed = Math.hypot(p.vx, p.vy) || 1;
+    var len = Math.min(42, Math.max(7, speed * p.stretch));
+    var x2 = p.x - (p.vx / speed) * len;
+    var y2 = p.y - (p.vy / speed) * len;
+    if(x2 === p.x && y2 === p.y) x2 += 0.5;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = rgba(amber, alpha * 0.45);
+    ctx.lineWidth = p.w + 3.2;
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+    var grad = ctx.createLinearGradient(p.x, p.y, x2, y2);
+    grad.addColorStop(0, rgba(head, alpha));
+    grad.addColorStop(1, rgba(back, alpha * 0.15));
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = p.w;
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+    ctx.fillStyle = rgba(head, alpha);
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, Math.max(0.8, p.w * 0.75), 0, Math.PI * 2);
+    ctx.fill();
+    return true;
+  }
+
+  function drawPiece(p, dt){
+    p.age += dt;
+    if(p.age >= p.life) return false;
+    p.vy += 920 * dt;
+    var drag = Math.exp(-1.1 * dt);
+    p.vx *= drag;
+    p.vy *= drag;
+    p.x += p.vx * dt;
+    p.y += p.vy * dt;
+    p.rot += p.spin * dt;
+    var age = p.age / p.life;
+    var alpha = age < 0.72 ? 1 : (1 - age) / 0.28;
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    ctx.globalAlpha = Math.max(0, alpha);
+    if(p.kind === 'strip'){
+      ctx.fillStyle = rgba(p.color, 1);
+      ctx.fillRect(-p.len / 2, -p.thick / 2, p.len, p.thick);
+      ctx.strokeStyle = rgba(edge, 0.9);
+      ctx.lineWidth = 1;
+      ctx.strokeRect(-p.len / 2, -p.thick / 2, p.len, p.thick);
+    } else if(p.kind === 'ring'){
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = rgba(edge, 1);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.rad, p.rad * 0.62, 0, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = rgba(p.color, 1);
+      ctx.stroke();
+      ctx.lineWidth = 2.4;
+      ctx.strokeStyle = rgba(edge, 1);
+      ctx.beginPath();
+      ctx.ellipse(p.rad * 0.2, 0, p.rad * 0.62, p.rad * 0.38, 0, 0.4, Math.PI * 1.75);
+      ctx.stroke();
+      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = rgba(p.color, 1);
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = rgba(p.color, 1);
+      ctx.strokeStyle = rgba(edge, 1);
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(0, 0, p.rad, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(0, 0, p.rad * 0.32, 0, Math.PI * 2);
+      ctx.fillStyle = rgba(edge, 1);
+      ctx.fill();
+    }
+    ctx.restore();
+    return true;
+  }
+
+  emitBurst(bursts[0]);
+  var t0 = performance.now();
+  var last = t0;
+  function frame(now){
+    if(run !== steelPassRun) return;
+    var elapsed = (now - t0) / 1000;
+    var dt = Math.min(0.034, Math.max(0.001, (now - last) / 1000));
+    last = now;
+    var i;
+    for(i=0;i<bursts.length;i++){
+      if(!bursts[i].done && elapsed >= bursts[i].t) emitBurst(bursts[i]);
+    }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    ctx.globalAlpha = 1;
+    var next = [];
+    for(i=0;i<flashes.length;i++) if(drawFlash(flashes[i], dt)) next.push(flashes[i]);
+    flashes = next;
+    next = [];
+    for(i=0;i<pieces.length;i++) if(drawPiece(pieces[i], dt)) next.push(pieces[i]);
+    pieces = next;
+    next = [];
+    for(i=0;i<sparks.length;i++) if(drawSpark(sparks[i], dt)) next.push(sparks[i]);
+    sparks = next;
+    var alive = flashes.length || pieces.length || sparks.length;
+    var waiting = bursts.some(function(b){ return !b.done; });
+    if((alive || waiting) && elapsed < 2.35) requestAnimationFrame(frame);
+    else if(canvas.parentNode) canvas.remove();
+  }
+  requestAnimationFrame(frame);
+}
+
+function placeQuizPassStamp(reduce){
+  var prev = document.querySelector('.quiz-pass-stamp');
+  if(prev) prev.remove();
+  if(steelPassStampTimer) clearTimeout(steelPassStampTimer);
+  var el = document.createElement('div');
+  el.className = 'quiz-pass-stamp' + (reduce ? ' is-static' : '');
+  el.setAttribute('role', 'status');
+  el.textContent = 'Passed';
+  document.body.appendChild(el);
+  steelPassStampTimer = setTimeout(function(){
+    steelPassStampTimer = 0;
+    if(el.parentNode) el.parentNode.removeChild(el);
+  }, 2400);
 }
 
 function qzRetry(day) {

@@ -429,6 +429,13 @@ html[data-look="adele-1"][data-theme="dark"] .sw-footer-h {
   }
 }
 
+html[data-look="adele-1"][data-theme="dark"] .quiz-pass-stamp,
+html[data-look="adele-1"][data-theme="dark"] .quiz-pass-stamp.is-static {
+  background: #ED1C24;
+  color: #FFFFFF;
+  border-color: #C81017;
+}
+
 html[data-look="adele-1"][data-theme="dark"] .po-doc,
 html[data-look="adele-1"][data-theme="dark"] .bol-doc,
 html[data-look="adele-1"][data-theme="dark"] .ste-form-doc,

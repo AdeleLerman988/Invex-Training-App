@@ -8,7 +8,7 @@
   };
   var CELEB = {
     original: 'original',
-    'adele-1': 'spark',
+    'adele-1': 'sparks',
     'adele-2': 'confetti'
   };
   var FOUNDRY = 'themes/steel-warehouse-training-dark.css';

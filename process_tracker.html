@@ -14,7 +14,7 @@
 <script>/* Apply the saved look and light/dark before first paint. Adele 1 stays the default. */
 (function(){
   var LOOKS={original:'themes/original.css','adele-1':'themes/steel-warehouse-training.css','adele-2':'themes/adele-2.css'};
-  var CELEB={original:'original','adele-1':'spark','adele-2':'confetti'};
+  var CELEB={original:'original','adele-1':'sparks','adele-2':'confetti'};
   var key='adele-1', theme=null;
   try { key=localStorage.getItem('invex_look')||'adele-1'; theme=localStorage.getItem('invex_theme'); } catch (e) {}
   if(!LOOKS[key]) key='adele-1';
