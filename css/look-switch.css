@@ -60,6 +60,26 @@
 .fac-toggle-btn { bottom: 84px; }
 .fac-cfg-launch { bottom: 140px; }
 
+/* The fixed facilitator control covers the last checklist rows on a phone.
+   Extra bottom space applies in every look. */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(148px + env(safe-area-inset-bottom));
+  }
+  .main {
+    padding-bottom: calc(168px + env(safe-area-inset-bottom));
+  }
+  .look-switch {
+    bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+  .fac-toggle-btn {
+    bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+  .fac-cfg-launch {
+    bottom: calc(132px + env(safe-area-inset-bottom));
+  }
+}
+
 /* Empty until someone signs in. A bordered pill would otherwise show as a blank chip. */
 .user-badge:empty { display: none !important; }
 

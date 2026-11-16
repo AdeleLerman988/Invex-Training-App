@@ -22,6 +22,7 @@
   document.documentElement.setAttribute('data-look', key);
   document.documentElement.setAttribute('data-quiz-celebrate', CELEB[key]);
   document.write('<link id="invex-theme" rel="stylesheet" href="'+LOOKS[key]+'">');
+  if(key==='adele-1' && theme==='dark') document.write('<link id="invex-theme-dark" rel="stylesheet" href="themes/steel-warehouse-training-dark.css">');
 })();
 </script>
 <link rel="stylesheet" href="css/look-switch.css">
@@ -123,7 +124,7 @@ function toggleNav(){
   btn.setAttribute('aria-expanded', open?'true':'false');
 }
 
-function toggleTheme(){var next=document.documentElement.getAttribute('data-theme')!=='dark';document.documentElement.setAttribute('data-theme', next?'dark':'light');localStorage.setItem('invex_theme', next?'dark':'light');var btn=document.getElementById('theme-toggle-btn');if(btn)btn.textContent=next?'Light':'Dark';}
+function toggleTheme(){var next=document.documentElement.getAttribute('data-theme')!=='dark';document.documentElement.setAttribute('data-theme', next?'dark':'light');localStorage.setItem('invex_theme', next?'dark':'light');var btn=document.getElementById('theme-toggle-btn');if(btn)btn.textContent=next?'Light':'Dark';if(window.syncFoundry)window.syncFoundry();}
 (function(){var btn=document.getElementById('theme-toggle-btn');if(btn)btn.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'Light':'Dark';})();
 // ── SCENARIO DEFINITIONS ──
 const SCENARIOS = [
@@ -572,8 +573,12 @@ function renderMain(){
       let cls='txn-input';
       if(val) cls+=' has-val';
       else if(isOnDeck) cls+=' on-deck';
+      let tone='empty';
+      if(isDone) tone='done';
+      else if(isOnDeck) tone='ondeck';
+      else if(!isMyDept) tone='locked';
 
-      html+=`<td class="cell"><div class="cell-inner">
+      html+=`<td class="cell cell-${tone}"><div class="cell-inner">
         <input id="inp_${sid}_${gi}" class="${cls}" type="text"
           value="${val.replace(/"/g,'&quot;')}"
           placeholder="Confirmation #"

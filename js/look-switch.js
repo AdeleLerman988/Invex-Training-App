@@ -11,6 +11,7 @@
     'adele-1': 'spark',
     'adele-2': 'confetti'
   };
+  var FOUNDRY = 'themes/steel-warehouse-training-dark.css';
 
   function current() {
     var key = document.documentElement.getAttribute('data-look');
@@ -36,6 +37,7 @@
     try { localStorage.setItem('invex_look', key); } catch (e) {}
     if (link && link.getAttribute('href') !== LOOKS[key]) link.setAttribute('href', LOOKS[key]);
     sync(key);
+    syncFoundry();
     if (typeof window.drawWheel === 'function') {
       try { window.drawWheel(); } catch (e) {}
     }
@@ -80,11 +82,41 @@
     else if (e.key === 'End') { e.preventDefault(); apply('adele-2'); document.querySelector('.look-switch [data-look="adele-2"]').focus(); }
   });
 
+  function foundryOn() {
+    return current() === 'adele-1' && document.documentElement.getAttribute('data-theme') === 'dark';
+  }
+
+  function syncFoundry() {
+    var link = document.getElementById('invex-theme-dark');
+    var on = foundryOn();
+    if (on) {
+      if (!link) {
+        link = document.createElement('link');
+        link.id = 'invex-theme-dark';
+        link.rel = 'stylesheet';
+        var theme = document.getElementById('invex-theme');
+        if (theme && theme.parentNode) theme.parentNode.insertBefore(link, theme.nextSibling);
+        else document.head.appendChild(link);
+      }
+      if (link.getAttribute('href') !== FOUNDRY) link.setAttribute('href', FOUNDRY);
+    } else if (link && link.parentNode) {
+      link.parentNode.removeChild(link);
+    }
+    var logos = document.querySelectorAll('.sw-logo-img, .sw-login-logo');
+    Array.prototype.forEach.call(logos, function (img) {
+      if (!img.getAttribute('data-logo-light')) img.setAttribute('data-logo-light', img.getAttribute('src'));
+      var next = on ? 'assets/logo-footer.svg' : img.getAttribute('data-logo-light');
+      if (next && img.getAttribute('src') !== next) img.setAttribute('src', next);
+    });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { sync(current()); });
+    document.addEventListener('DOMContentLoaded', function () { sync(current()); syncFoundry(); });
   } else {
     sync(current());
+    syncFoundry();
   }
 
   window.applyLook = apply;
+  window.syncFoundry = syncFoundry;
 })();

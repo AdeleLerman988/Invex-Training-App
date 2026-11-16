@@ -22,6 +22,7 @@
   document.documentElement.setAttribute('data-look', key);
   document.documentElement.setAttribute('data-quiz-celebrate', CELEB[key]);
   document.write('<link id="invex-theme" rel="stylesheet" href="'+LOOKS[key]+'">');
+  if(key==='adele-1' && theme==='dark') document.write('<link id="invex-theme-dark" rel="stylesheet" href="themes/steel-warehouse-training-dark.css">');
 })();
 </script>
 <link rel="stylesheet" href="css/look-switch.css">
@@ -7692,6 +7693,7 @@ document.querySelectorAll('.sc-sec-lbl').forEach(function(el){
     var next=document.documentElement.getAttribute('data-theme')!=='dark';
     localStorage.setItem('invex_theme', next?'dark':'light');
     applyTheme(next);
+    if(window.syncFoundry) window.syncFoundry();
   };
 })();
 

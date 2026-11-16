@@ -59,7 +59,15 @@ Rules for this look:
 - Red means correct. A correct answer uses a red border, a check icon, the word "Correct", and a short check animation. The animation is off when `prefers-reduced-motion` is set.
 - A wrong answer is not red. It uses an ink or heading border, a ✗ icon, and the words "Not quite". Color is always paired with an icon and a word.
 - Small red text uses `--red-dark` (`#C81017`). `#ED1C24` is for fills, borders, and large text.
-- The day intro is an ink (`#17212E`) band. Dark mode uses the same palette: ink and black surfaces, white text, red accents.
+- The day intro is an ink (`#17212E`) band in light mode.
+
+### Adele 1 dark: Foundry
+
+`themes/steel-warehouse-training-dark.css` loads only when the look is Adele 1 and `data-theme` is `dark`. Every rule is also scoped to `html[data-look="adele-1"][data-theme="dark"]`, so Original and Adele 2 keep their own dark modes.
+
+Foundry keeps the 6px radius. Page `#191919`, cards and header `#222222`, raised tiles `#2B2B2B`, inputs and the top bar `#141414`, lines `#3C3C3C`, input borders `#6E6E6E`. Body text is `#D1D1D1`, muted text `#B3B3B3`, headings `#FFFFFF`, placeholders `#8C8C8C` italic. `#ED1C24` is a fill, a bar, or an edge. It is not used for small text. Eyebrows and the active nav item are white with a red bar. The header uses the white footer logo, `assets/logo-footer.svg`.
+
+A wrong answer stays an ink border, a ✗, and “Not quite”. A correct answer uses a red edge, a check, and the word “Correct”. The progress fill is white on a dark track, with a red edge. The facilitator button is solid. “Email Results to Facilitator” is a white outline. Checked steps and a Complete status show a ✓. Process-tracker cells are solid when done, red-edged when on deck, dashed when empty, and muted with a lock when locked.
 
 Pointing the theme link at `themes/steel-warehouse.css` still restores the base Steel Warehouse theme. The switcher does not list that file. Adele 1 is the training sister.
 
