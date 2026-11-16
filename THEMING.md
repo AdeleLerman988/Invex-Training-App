@@ -69,7 +69,11 @@ Rules for this look:
 
 Foundry keeps the 6px radius and the light layout. It does not change widths, padding, the 1170px container, or the logo box. `--sw-white` stays `#FFFFFF`, so type on red fills stays white. Page `#191919`, cards and header `#222222`, raised tiles `#2B2B2B`, inputs and the top bar `#141414`. Body text is `#D1D1D1`, muted text `#B3B3B3`, headings `#FFFFFF`, placeholders `#8C8C8C` italic. The header image swaps to `assets/logo-footer.svg` inside the same 185×73 box (108×42 on a phone).
 
-A wrong answer stays an ink border, a ✗, and “Not quite”. A correct answer uses a red edge, a check, and the word “Correct”. The progress fill is white on a dark track, with a red edge. The facilitator button is solid. “Email Results to Facilitator” is a white outline. Checked steps and a Complete status show a ✓. Process-tracker cells are solid when done, red-edged when on deck, dashed when empty, and muted with a lock when locked.
+A wrong answer stays an ink border, a ✗, and “Not quite”. A correct answer uses a red edge, a check, and the word “Correct”. The progress fill is white on a dark track, with a red edge. The facilitator button is solid `#C81017`. “Email Results to Facilitator” is a white outline. Checked steps and a Complete status show a ✓.
+
+Small white type sits on `#C81017`, not `#ED1C24`: the selected look pill, the facilitator button, and the Spot the Error active tab and badges. Spot the Error documents are `#222222` with `#FFFFFF` values on `#141414` and `#B3B3B3` labels. A saved tracker number is `#D1D1D1` with bold `#191919` type. An empty editable cell is dashed. On deck keeps a red edge. Locked cells stay muted with a lock. “Stop Time”, unhappy-path tags, and the memory-game term chip are white with a red border.
+
+On a phone the look switcher is inside the open menu, so the sticky header is only the utility row and the logo row.
 
 Pointing the theme link at `themes/steel-warehouse.css` still restores the base Steel Warehouse theme. The switcher does not list that file. Adele 1 is the training sister.
 

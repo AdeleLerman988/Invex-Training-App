@@ -1217,6 +1217,14 @@ thead th,
   }
 }
 
+@media (max-width: 767px) {
+  .up-search {
+    flex-basis: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
 /* Phone: one column, 16px sides, smaller logo. */
 .sidebar .nav-item,
 .sidebar .nav-item.act,

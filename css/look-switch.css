@@ -64,13 +64,18 @@
    button is fixed. One control, plus room to scroll the last checklist row clear. */
 @media (max-width: 767px) {
   .look-switch.is-in-menu {
+    display: none;
     position: static;
     right: auto;
     bottom: auto;
     z-index: auto;
-    margin: 0;
+    margin: 8px 16px 12px;
     box-shadow: none;
     max-width: 100%;
+  }
+  .day-tabs.is-open .look-switch.is-in-menu,
+  .tabs.is-open .look-switch.is-in-menu {
+    display: flex;
   }
   body {
     padding-bottom: calc(72px + env(safe-area-inset-bottom));

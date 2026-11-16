@@ -112,11 +112,11 @@
 
   function placeSwitcher() {
     var sw = document.querySelector('.look-switch');
-    var actions = document.querySelector('.sw-util-actions');
+    var nav = document.getElementById('primary-nav') || document.getElementById('tabs');
     if (!sw) return;
     var phone = window.matchMedia('(max-width: 767px)').matches;
-    if (phone && actions) {
-      if (sw.parentNode !== actions) actions.appendChild(sw);
+    if (phone && nav) {
+      if (sw.parentNode !== nav) nav.appendChild(sw);
       sw.classList.add('is-in-menu');
     } else {
       if (sw.parentNode !== document.body) document.body.appendChild(sw);
