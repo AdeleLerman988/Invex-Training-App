@@ -296,12 +296,21 @@ html[data-look="adele-2"][data-theme="dark"] {
   --celebrate-5: #FFFCF8;
   --placeholder: #B7C0CB;
 
+  --dept-sales: #F3EEE6;
   --dept-purchasing: #F3EEE6;
   --dept-planning: #B7C0CB;
   --dept-scheduling: #F3EEE6;
+  --dept-recording: #F3EEE6;
   --dept-transport: #B7C0CB;
   --dept-receiving: #F3EEE6;
+  --dept-production: #F3EEE6;
+  --dept-quality: #F3EEE6;
   --dept-accounting: #B7C0CB;
+
+  /* Light pink washes are unreadable once type flips to cream. */
+  --red-08: color-mix(in srgb, #ED1C24 22%, #1C2430);
+  --red-12: color-mix(in srgb, #ED1C24 22%, #1C2430);
+  --red-15: color-mix(in srgb, #ED1C24 22%, #1C2430);
 }
 
 html[data-look="adele-2"] body {
@@ -794,6 +803,102 @@ html[data-look="adele-2"][data-theme="dark"] .sw-footer {
   background: #0C1016;
   color: #F3EEE6;
   border-top: 2px solid #F3EEE6;
+}
+
+/* Adele 2 dark contrast. Colors only. Small white type sits on #C81017, not #ED1C24. */
+html[data-look="adele-2"][data-theme="dark"] .mode-btn.active,
+html[data-look="adele-2"][data-theme="dark"] .up-filter-btn.active,
+html[data-look="adele-2"][data-theme="dark"] .gloss-cat-btn.active,
+html[data-look="adele-2"][data-theme="dark"] .gf-btn.is-on,
+html[data-look="adele-2"][data-theme="dark"] .badge-day,
+html[data-look="adele-2"][data-theme="dark"] .day-tab.active,
+html[data-look="adele-2"][data-theme="dark"] .tab.active,
+html[data-look="adele-2"][data-theme="dark"] .look-switch button[aria-checked="true"],
+html[data-look="adele-2"][data-theme="dark"] .look-switch button[aria-checked="true"]:hover,
+html[data-look="adele-2"][data-theme="dark"] .login-btn,
+html[data-look="adele-2"][data-theme="dark"] .quiz-start-btn,
+html[data-look="adele-2"][data-theme="dark"] .quiz-next-btn,
+html[data-look="adele-2"][data-theme="dark"] .quiz-email-btn,
+html[data-look="adele-2"][data-theme="dark"] .btn-tracker,
+html[data-look="adele-2"][data-theme="dark"] .spin-btn,
+html[data-look="adele-2"][data-theme="dark"] .wheel-result-go,
+html[data-look="adele-2"][data-theme="dark"] .fac-cfg-apply,
+html[data-look="adele-2"][data-theme="dark"] .fac-cfg-launch,
+html[data-look="adele-2"][data-theme="dark"] .seq-check-btn,
+html[data-look="adele-2"][data-theme="dark"] .ds-check-btn,
+html[data-look="adele-2"][data-theme="dark"] .ste-check-btn,
+html[data-look="adele-2"][data-theme="dark"] .arc-start-btn,
+html[data-look="adele-2"][data-theme="dark"] .arc-ctrl-fire,
+html[data-look="adele-2"][data-theme="dark"] .btn-p,
+html[data-look="adele-2"][data-theme="dark"] .btn-start,
+html[data-look="adele-2"][data-theme="dark"] .ste-form-hdr-badge,
+html[data-look="adele-2"][data-theme="dark"] .ste-po-badge,
+html[data-look="adele-2"][data-theme="dark"] .ste-tab.ste-tab-active,
+html[data-look="adele-2"][data-theme="dark"] .quiz-opt-btn.is-right .quiz-opt-label,
+html[data-look="adele-2"][data-theme="dark"] .elapsed-done {
+  background-color: #C81017 !important;
+  color: #FFFCF8 !important;
+  border-color: #F3EEE6 !important;
+}
+
+html[data-look="adele-2"][data-theme="dark"] .is-v,
+html[data-look="adele-2"][data-theme="dark"] .quiz-stat-v,
+html[data-look="adele-2"][data-theme="dark"] .prog-pct,
+html[data-look="adele-2"][data-theme="dark"] .pm-lib-dept,
+html[data-look="adele-2"][data-theme="dark"] .dep-label,
+html[data-look="adele-2"][data-theme="dark"] .mem-card.type-term .mem-card-back,
+html[data-look="adele-2"][data-theme="dark"] .mem-legend-chip,
+html[data-look="adele-2"][data-theme="dark"] .mem-leg-term,
+html[data-look="adele-2"][data-theme="dark"] .btn-stop,
+html[data-look="adele-2"][data-theme="dark"] .hk.red,
+html[data-look="adele-2"][data-theme="dark"] .arc-ol-title,
+html[data-look="adele-2"][data-theme="dark"] .ds-col-hdr,
+html[data-look="adele-2"][data-theme="dark"] .up-tag,
+html[data-look="adele-2"][data-theme="dark"] .atag {
+  color: #F3EEE6 !important;
+  border-color: #F3EEE6 !important;
+}
+
+html[data-look="adele-2"][data-theme="dark"] .ds-col-hdr,
+html[data-look="adele-2"][data-theme="dark"] .ot-icon,
+html[data-look="adele-2"][data-theme="dark"] .ex-report-icon {
+  background-color: #283140 !important;
+}
+
+html[data-look="adele-2"][data-theme="dark"] .arc-overlay,
+html[data-look="adele-2"][data-theme="dark"] .arc-game-area {
+  background-color: #12171F;
+  color: #F3EEE6;
+}
+
+html[data-look="adele-2"][data-theme="dark"] .arc-ol-sub,
+html[data-look="adele-2"][data-theme="dark"] .arc-ol-inst {
+  color: #B7C0CB !important;
+}
+
+html[data-look="adele-2"][data-theme="dark"] .sw-footer a,
+html[data-look="adele-2"][data-theme="dark"] .sw-footer button,
+html[data-look="adele-2"][data-theme="dark"] .sw-footer-h {
+  color: #F3EEE6;
+}
+
+html[data-look="adele-2"][data-theme="dark"] .quiz-review-item.qcorrect {
+  background: color-mix(in srgb, #ED1C24 24%, #1C2430);
+  color: #F3EEE6;
+}
+
+html[data-look="adele-2"][data-theme="dark"] .quiz-review-item.qcorrect .quiz-review-q::after {
+  background: #1C2430;
+  color: #F3EEE6;
+  border-color: #ED1C24;
+}
+
+html[data-look="adele-2"][data-theme="dark"] .mem-legend-chip,
+html[data-look="adele-2"][data-theme="dark"] .mem-leg-term,
+html[data-look="adele-2"][data-theme="dark"] .btn-stop,
+html[data-look="adele-2"][data-theme="dark"] .hk.red {
+  background-color: transparent !important;
+  border-color: #ED1C24 !important;
 }
 
 html[data-look="adele-2"] input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="hidden"]),

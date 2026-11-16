@@ -87,7 +87,7 @@ Pointing the theme link at `themes/steel-warehouse.css` still restores the base 
 - Quiz answers are chunky lettered rows. The correct row is `#F8D6D7` with a red border and a "Nice work." box. A wrong row keeps an ink border, a ✗, and "Not quite". It is never red.
 - A coil coach sits beside the quiz on wide screens.
 - On Continue, Adele 2 shows that right or wrong state before the next question. Original and Adele 1 still move on as soon as an answer is selected.
-- Dark mode keeps the red accent on a deep ink page, with cream text and cream offset shadows.
+- Dark mode keeps the cream type and cream offset shadows on a deep ink page. Small white type sits on `#C81017`. `#ED1C24` stays the loud edge and the large accent. Layout matches light.
 - Confetti is red, ink, and cream.
 
 ## Notes
