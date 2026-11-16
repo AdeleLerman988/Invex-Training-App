@@ -1,9 +1,9 @@
 /*
   Foundry — Adele 1 dark.
   Loaded only while data-look is adele-1 and data-theme is dark.
-  Same 6px radius as the training sister theme. Red is a fill, a bar,
-  or an edge. It is not used for small text. A wrong answer stays an
-  ink border, a ✗, and the words "Not quite".
+  Colors only. Widths, heights, padding, position, and the logo box
+  stay with the light theme. --sw-white stays #FFFFFF so type on red
+  fills does not turn into #222222.
 */
 
 html[data-look="adele-1"][data-theme="dark"] {
@@ -19,67 +19,54 @@ html[data-look="adele-1"][data-theme="dark"] {
   --accent2: #FFFFFF;
   --warn: #D1D1D1;
   --danger: #D1D1D1;
-  --timing: #D1D1D1;
+  --timing: #FFFFFF;
   --done: #FFFFFF;
   --on-primary: #FFFFFF;
   --placeholder: #8C8C8C;
 
   --sw-red: #ED1C24;
   --sw-red-dark: #C81017;
-  --sw-ink: #D1D1D1;
+  /* Ink stays a dark surface color. Light text uses --text and --heading. */
+  --sw-ink: #222222;
   --sw-black: #191919;
   --sw-heading: #FFFFFF;
   --sw-text: #D1D1D1;
   --sw-line: #3C3C3C;
   --sw-line-strong: #6E6E6E;
   --sw-mist: #2B2B2B;
-  --sw-white: #222222;
 
   --red: #ED1C24;
   --red-dark: #C81017;
   --ink: #D1D1D1;
-  --white: #222222;
   --line: #3C3C3C;
   --line-strong: #6E6E6E;
   --mist: #2B2B2B;
 
-  --radius: 6px;
-  --radius-button: 6px;
-  --radius-card: 6px;
-  --radius-input: 6px;
-  --radius-photo: 6px;
-  --radius-pill: 999px;
-
-  /* Small text is white or gray. #ED1C24 fails AA on #191919. */
   --red-small: #FFFFFF;
   --intro-bg: #222222;
   --intro-fg: #D1D1D1;
   --intro-heading: #FFFFFF;
   --intro-eyebrow: #FFFFFF;
-  --intro-bar: 4px solid #ED1C24;
   --intro-illus: #D1D1D1;
   --illus-stroke: #D1D1D1;
-  --header-rule: 2px solid #ED1C24;
 
   --state-correct: #FFFFFF;
   --state-correct-large: #FFFFFF;
   --state-correct-bg: #2B2B2B;
   --state-correct-border: #ED1C24;
-  --state-correct-fill: #C81017;
+  --state-correct-fill: #ED1C24;
   --on-correct: #FFFFFF;
-  --correct-line: 2px solid #ED1C24;
   --state-wrong: #D1D1D1;
   --state-wrong-border: #D1D1D1;
   --state-wrong-bg: #222222;
-  --word-correct: " Correct";
-  --word-wrong: " Not quite";
 
   --email-btn-bg: transparent;
   --email-btn-fg: #FFFFFF;
-  --fac-btn-bg: #C81017;
+  --email-btn-border: #FFFFFF;
+  --fac-btn-bg: #ED1C24;
   --fac-btn-fg: #FFFFFF;
-  --fac-btn-border: #C81017;
-  --fac-btn-hover: #ED1C24;
+  --fac-btn-border: #ED1C24;
+  --fac-btn-hover: #C81017;
   --fac-btn-hover-fg: #FFFFFF;
 
   --cell-empty-bg: #141414;
@@ -88,11 +75,11 @@ html[data-look="adele-1"][data-theme="dark"] {
   --cell-ondeck-bg: #141414;
   --cell-ondeck-border: #ED1C24;
   --cell-ondeck-fg: #FFFFFF;
-  --cell-filled-bg: #222222;
+  --cell-filled-bg: #2B2B2B;
   --cell-filled-border: #6E6E6E;
   --cell-filled-fg: #FFFFFF;
   --cell-done-bg: #2B2B2B;
-  --cell-done-border: #3C3C3C;
+  --cell-done-border: #6E6E6E;
   --cell-done-fg: #FFFFFF;
   --cell-focus-bg: #141414;
 
@@ -108,31 +95,10 @@ html[data-look="adele-1"][data-theme="dark"] {
   --dept-accounting: #B3B3B3;
 }
 
-html[data-look="adele-1"][data-theme="dark"] body,
-html[data-look="adele-1"][data-theme="dark"] .main {
-  background: #191919;
-  color: #D1D1D1;
-}
-
-/* Full-bleed frame so the page color does not leave a strip beside the sidebar. */
-html[data-look="adele-1"][data-theme="dark"] .layout {
-  max-width: none;
-  width: 100%;
-  margin: 0;
-  background: #191919;
-  align-items: stretch;
-  grid-template-columns: 250px minmax(0, 1fr);
-}
-
-html[data-look="adele-1"][data-theme="dark"] .sidebar {
-  background: #222222;
-  border-right: 1px solid #3C3C3C;
-  height: auto;
-  min-height: calc(100vh - var(--header-height));
-}
-
+/* Surfaces that the light skin paints with --sw-white. */
 html[data-look="adele-1"][data-theme="dark"] .sw-header,
 html[data-look="adele-1"][data-theme="dark"] .sw-main,
+html[data-look="adele-1"][data-theme="dark"] .sidebar,
 html[data-look="adele-1"][data-theme="dark"] .gloss-panel,
 html[data-look="adele-1"][data-theme="dark"] .login-card,
 html[data-look="adele-1"][data-theme="dark"] .modal,
@@ -142,14 +108,60 @@ html[data-look="adele-1"][data-theme="dark"] .quiz-card,
 html[data-look="adele-1"][data-theme="dark"] .sc,
 html[data-look="adele-1"][data-theme="dark"] .sc-card,
 html[data-look="adele-1"][data-theme="dark"] .up-card,
-html[data-look="adele-1"][data-theme="dark"] .ex-card {
-  background: #222222;
+html[data-look="adele-1"][data-theme="dark"] .ex-card,
+html[data-look="adele-1"][data-theme="dark"] .cc,
+html[data-look="adele-1"][data-theme="dark"] .gf-btn,
+html[data-look="adele-1"][data-theme="dark"] .mem-card-front,
+html[data-look="adele-1"][data-theme="dark"] .mem-card-back,
+html[data-look="adele-1"][data-theme="dark"] .stat,
+html[data-look="adele-1"][data-theme="dark"] .is,
+html[data-look="adele-1"][data-theme="dark"] .istat {
+  background-color: #222222;
   color: #D1D1D1;
-  border-color: #3C3C3C;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .is,
+html[data-look="adele-1"][data-theme="dark"] .istat,
+html[data-look="adele-1"][data-theme="dark"] .stat,
+html[data-look="adele-1"][data-theme="dark"] .cc,
+html[data-look="adele-1"][data-theme="dark"] .active-chip {
+  background-color: #2B2B2B;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sched .sb,
+html[data-look="adele-1"][data-theme="dark"] .schedule .sched-block,
+html[data-look="adele-1"][data-theme="dark"] .sched .sb:nth-child(even),
+html[data-look="adele-1"][data-theme="dark"] .schedule .sched-block:nth-child(even) {
+  background-color: #2B2B2B !important;
+  color: #FFFFFF;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sched .sb:nth-child(even),
+html[data-look="adele-1"][data-theme="dark"] .schedule .sched-block:nth-child(even) {
+  background-color: #222222 !important;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sb .sl,
+html[data-look="adele-1"][data-theme="dark"] .sb .st,
+html[data-look="adele-1"][data-theme="dark"] .sched-block .sl,
+html[data-look="adele-1"][data-theme="dark"] .sched-block .st {
+  color: #FFFFFF;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .gf-btn.is-on {
+  color: #FFFFFF;
+  border-color: #ED1C24;
+  background-color: #2B2B2B;
 }
 
 html[data-look="adele-1"][data-theme="dark"] .sw-util {
-  background: #141414;
+  background-color: #141414;
+  color: #D1D1D1;
+}
+
+html[data-look="adele-1"][data-theme="dark"] body,
+html[data-look="adele-1"][data-theme="dark"] .main {
+  background-color: #191919;
   color: #D1D1D1;
 }
 
@@ -162,20 +174,7 @@ html[data-look="adele-1"][data-theme="dark"] .gloss-btn,
 html[data-look="adele-1"][data-theme="dark"] .theme-toggle-btn,
 html[data-look="adele-1"][data-theme="dark"] .session-timer,
 html[data-look="adele-1"][data-theme="dark"] .user-badge,
-html[data-look="adele-1"][data-theme="dark"] .sw-sub {
-  color: #D1D1D1;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .sw-logo-img,
-html[data-look="adele-1"][data-theme="dark"] .sw-login-logo {
-  content: url("../assets/logo-footer.svg");
-  width: 210px;
-  height: 82px;
-  object-fit: contain;
-  object-position: left center;
-  background: transparent;
-}
-
+html[data-look="adele-1"][data-theme="dark"] .sw-sub,
 html[data-look="adele-1"][data-theme="dark"] h1,
 html[data-look="adele-1"][data-theme="dark"] h2,
 html[data-look="adele-1"][data-theme="dark"] h3,
@@ -198,7 +197,6 @@ html[data-look="adele-1"][data-theme="dark"] .sw-hero .oi {
   color: #D1D1D1;
 }
 
-/* Eyebrows and the active item: white type, red bar. Not red type. */
 html[data-look="adele-1"][data-theme="dark"] .sb-lbl,
 html[data-look="adele-1"][data-theme="dark"] .fac-lbl,
 html[data-look="adele-1"][data-theme="dark"] .quiz-qnum,
@@ -208,8 +206,6 @@ html[data-look="adele-1"][data-theme="dark"] .feed-title,
 html[data-look="adele-1"][data-theme="dark"] .ex-field-lbl,
 html[data-look="adele-1"][data-theme="dark"] .sc-sec-lbl {
   color: #FFFFFF;
-  border-left: 3px solid #ED1C24;
-  padding-left: 8px;
 }
 
 html[data-look="adele-1"][data-theme="dark"] .day-tab.active,
@@ -217,198 +213,134 @@ html[data-look="adele-1"][data-theme="dark"] .tab.active,
 html[data-look="adele-1"][data-theme="dark"] .nav-item.act,
 html[data-look="adele-1"][data-theme="dark"] .nav-item.active {
   color: #FFFFFF;
-  background: transparent;
-  border-bottom: 2px solid #ED1C24;
+  border-bottom-color: #ED1C24;
 }
 
-html[data-look="adele-1"][data-theme="dark"] .is,
-html[data-look="adele-1"][data-theme="dark"] .istat,
-html[data-look="adele-1"][data-theme="dark"] .stat,
-html[data-look="adele-1"][data-theme="dark"] .cc {
-  background: #2B2B2B;
-  border: 1px solid #3C3C3C;
-  box-shadow: none !important;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .is-v,
-html[data-look="adele-1"][data-theme="dark"] .istat-v,
-html[data-look="adele-1"][data-theme="dark"] .stat-val,
-html[data-look="adele-1"][data-theme="dark"] .quiz-stat-v {
+/* White type on red fills. --sw-white is no longer remapped. */
+html[data-look="adele-1"][data-theme="dark"] .quiz-start-btn,
+html[data-look="adele-1"][data-theme="dark"] .quiz-start-btn:hover,
+html[data-look="adele-1"][data-theme="dark"] .seq-check-btn,
+html[data-look="adele-1"][data-theme="dark"] .ds-check-btn,
+html[data-look="adele-1"][data-theme="dark"] .ste-check-btn,
+html[data-look="adele-1"][data-theme="dark"] .arc-start-btn,
+html[data-look="adele-1"][data-theme="dark"] .arc-ctrl-btn,
+html[data-look="adele-1"][data-theme="dark"] .arc-ctrl-fire,
+html[data-look="adele-1"][data-theme="dark"] .spin-btn,
+html[data-look="adele-1"][data-theme="dark"] .fac-cfg-launch,
+html[data-look="adele-1"][data-theme="dark"] .ste-po-badge,
+html[data-look="adele-1"][data-theme="dark"] .ste-form-hdr-badge,
+html[data-look="adele-1"][data-theme="dark"] .ste-tab.ste-tab-active,
+html[data-look="adele-1"][data-theme="dark"] .ste-tab-active,
+html[data-look="adele-1"][data-theme="dark"] .login-btn,
+html[data-look="adele-1"][data-theme="dark"] .btn-p,
+html[data-look="adele-1"][data-theme="dark"] .btn-start,
+html[data-look="adele-1"][data-theme="dark"] .quiz-next-btn {
   color: #FFFFFF;
 }
 
-html[data-look="adele-1"][data-theme="dark"] input::placeholder,
-html[data-look="adele-1"][data-theme="dark"] textarea::placeholder {
-  color: #8C8C8C;
-  font-style: italic;
-  opacity: 1;
-}
-
-html[data-look="adele-1"][data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="hidden"]),
-html[data-look="adele-1"][data-theme="dark"] select,
-html[data-look="adele-1"][data-theme="dark"] textarea {
-  background: #141414;
-  color: #D1D1D1;
-  border: 1px solid #6E6E6E;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .sched .sb,
-html[data-look="adele-1"][data-theme="dark"] .schedule .sched-block {
-  background: #2B2B2B !important;
+html[data-look="adele-1"][data-theme="dark"] .mem-card.type-term .mem-card-back,
+html[data-look="adele-1"][data-theme="dark"] .arc-ol-title,
+html[data-look="adele-1"][data-theme="dark"] .up-filter-btn,
+html[data-look="adele-1"][data-theme="dark"] .up-filter-btn.active,
+html[data-look="adele-1"][data-theme="dark"] .atag,
+html[data-look="adele-1"][data-theme="dark"] .up-tag {
   color: #FFFFFF;
 }
 
-html[data-look="adele-1"][data-theme="dark"] .sched .sb:nth-child(even),
-html[data-look="adele-1"][data-theme="dark"] .schedule .sched-block:nth-child(even) {
-  background: #222222 !important;
+html[data-look="adele-1"][data-theme="dark"] .quiz-email-btn,
+html[data-look="adele-1"][data-theme="dark"] .quiz-email-btn:hover {
+  background-color: transparent;
+  color: #FFFFFF;
+  border-color: #FFFFFF;
 }
 
-html[data-look="adele-1"][data-theme="dark"] .sb .sl,
-html[data-look="adele-1"][data-theme="dark"] .sb .st,
-html[data-look="adele-1"][data-theme="dark"] .sched-block .sl,
-html[data-look="adele-1"][data-theme="dark"] .sched-block .st {
+html[data-look="adele-1"][data-theme="dark"] .chip-name {
   color: #FFFFFF;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .hk.red {
+  color: #FFFFFF;
+  border-color: #ED1C24;
+  background-color: transparent;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .look-switch button[aria-checked="true"],
+html[data-look="adele-1"][data-theme="dark"] .look-switch button[aria-checked="true"]:hover {
+  background-color: #ED1C24;
+  color: #FFFFFF;
+}
+
+html[data-look="adele-1"][data-theme="dark"] input.txn-input,
+html[data-look="adele-1"][data-theme="dark"] .cell-empty input.txn-input {
+  background-color: #141414 !important;
+  color: #D1D1D1 !important;
+  border-color: #6E6E6E !important;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .cell-empty input.txn-input {
+  border-style: dashed;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .cell-ondeck input.txn-input,
+html[data-look="adele-1"][data-theme="dark"] input.txn-input.on-deck {
+  background-color: #141414 !important;
+  color: #FFFFFF !important;
+  border-color: #ED1C24 !important;
+  border-style: solid;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .cell-done input.txn-input,
+html[data-look="adele-1"][data-theme="dark"] .elapsed-done,
+html[data-look="adele-1"][data-theme="dark"] input.txn-input.has-val {
+  background-color: #2B2B2B !important;
+  color: #FFFFFF !important;
+  border-color: #6E6E6E !important;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .cell-locked input.txn-input {
+  background-color: #141414 !important;
+  color: #B3B3B3 !important;
+  border-color: #3C3C3C !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23B3B3B3' stroke-width='2'><rect x='5' y='11' width='14' height='10' rx='2'/><path d='M8 11V8a4 4 0 0 1 8 0v3'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
 html[data-look="adele-1"][data-theme="dark"] .sched-block.now::after {
-  content: "NOW";
-  background: #C81017 !important;
-  color: #FFFFFF !important;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 1px 4px;
-  border-radius: 2px !important;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .quiz-progress-wrap,
-html[data-look="adele-1"][data-theme="dark"] .prog-bar-outer,
-html[data-look="adele-1"][data-theme="dark"] .lp-prog-bar-outer,
-html[data-look="adele-1"][data-theme="dark"] .progress-bar {
-  height: 10px;
-  background: #141414;
-  border: 1px solid #ED1C24;
-  border-radius: 6px !important;
-  box-sizing: border-box;
+  background-color: #C81017;
+  color: #FFFFFF;
 }
 
 html[data-look="adele-1"][data-theme="dark"] .quiz-progress-bar,
 html[data-look="adele-1"][data-theme="dark"] .prog-bar-inner,
 html[data-look="adele-1"][data-theme="dark"] .lp-prog-bar-inner,
 html[data-look="adele-1"][data-theme="dark"] .progress-fill {
-  background: #FFFFFF;
+  background-color: #FFFFFF;
 }
 
-html[data-look="adele-1"][data-theme="dark"] .fac-toggle-btn,
-html[data-look="adele-1"][data-theme="dark"] .fac-toggle-btn:hover,
-html[data-look="adele-1"][data-theme="dark"] .fac-toggle-btn.is-on,
-html[data-look="adele-1"][data-theme="dark"] .btn-start,
-html[data-look="adele-1"][data-theme="dark"] .btn-stop,
-html[data-look="adele-1"][data-theme="dark"] .btn-p {
-  background: #C81017;
-  color: #FFFFFF;
-  border: 0;
-  border-radius: 6px !important;
-  box-shadow: none !important;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .quiz-email-btn,
-html[data-look="adele-1"][data-theme="dark"] .quiz-email-btn:hover {
-  background: transparent !important;
-  color: #FFFFFF !important;
-  border: 2px solid #FFFFFF !important;
-  box-shadow: none !important;
+html[data-look="adele-1"][data-theme="dark"] .quiz-progress-wrap,
+html[data-look="adele-1"][data-theme="dark"] .prog-bar-outer,
+html[data-look="adele-1"][data-theme="dark"] .lp-prog-bar-outer,
+html[data-look="adele-1"][data-theme="dark"] .progress-bar {
+  background-color: #141414;
+  border-color: #ED1C24;
 }
 
 html[data-look="adele-1"][data-theme="dark"] .quiz-review-item.qcorrect {
-  background: #2B2B2B;
-  border: 2px solid #ED1C24;
+  background-color: #2B2B2B;
+  border-color: #ED1C24;
   color: #FFFFFF;
 }
 
 html[data-look="adele-1"][data-theme="dark"] .quiz-review-item.qwrong {
-  background: #222222;
-  border: 2px solid #D1D1D1;
-  color: #D1D1D1;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .quiz-review-item.qwrong .quiz-review-icon,
-html[data-look="adele-1"][data-theme="dark"] .quiz-review-ans,
-html[data-look="adele-1"][data-theme="dark"] .quiz-status-fail,
-html[data-look="adele-1"][data-theme="dark"] .quiz-result-header.fail,
-html[data-look="adele-1"][data-theme="dark"] .quiz-result-header.fail .quiz-result-score,
-html[data-look="adele-1"][data-theme="dark"] .quiz-result-header.fail .quiz-result-label {
-  color: #D1D1D1;
+  background-color: #222222;
   border-color: #D1D1D1;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .step-check.ck,
-html[data-look="adele-1"][data-theme="dark"] .di.ck .dck,
-html[data-look="adele-1"][data-theme="dark"] .up-step-ck.ck,
-html[data-look="adele-1"][data-theme="dark"] .debrief-item.ck .d-check {
-  background: #C81017;
-  border-color: #C81017;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .step-check.ck::after,
-html[data-look="adele-1"][data-theme="dark"] .di.ck .dck::after,
-html[data-look="adele-1"][data-theme="dark"] .up-step-ck.ck::after,
-html[data-look="adele-1"][data-theme="dark"] .debrief-item.ck .d-check::after {
-  content: "✓";
-  color: #FFFFFF;
-  font-size: 11px;
-  font-weight: 700;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .sc-status.done::before {
-  content: "✓ ";
-  color: #FFFFFF;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .dep-label {
-  color: #FFFFFF !important;
-}
-
-/* Tracker cells. Done is solid, on deck has a red edge, empty is dashed, locked is muted. */
-html[data-look="adele-1"][data-theme="dark"] input.txn-input {
-  background: #141414 !important;
-  color: #D1D1D1 !important;
-  border: 1px dashed #6E6E6E !important;
-  border-radius: 6px !important;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .cell-ondeck input.txn-input,
-html[data-look="adele-1"][data-theme="dark"] input.txn-input.on-deck {
-  background: #141414 !important;
-  color: #FFFFFF !important;
-  border: 2px solid #ED1C24 !important;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .cell-done input.txn-input,
-html[data-look="adele-1"][data-theme="dark"] .elapsed-done {
-  background: #2B2B2B !important;
-  color: #FFFFFF !important;
-  border: 1px solid #3C3C3C !important;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .btn-clear-txn,
-html[data-look="adele-1"][data-theme="dark"] .btn-reset {
-  background: #2B2B2B;
-  color: #FFFFFF;
-  border: 1px solid #6E6E6E;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .cell-locked input.txn-input {
-  background: #141414 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23B3B3B3' stroke-width='2'><rect x='5' y='11' width='14' height='10' rx='2'/><path d='M8 11V8a4 4 0 0 1 8 0v3'/></svg>") right 8px center no-repeat !important;
-  color: #8C8C8C !important;
-  border: 1px solid #3C3C3C !important;
-  padding-right: 28px;
+  color: #D1D1D1;
 }
 
 html[data-look="adele-1"][data-theme="dark"] .sw-footer {
-  background: #141414;
+  background-color: #141414;
   color: #D1D1D1;
-  border-top: 1px solid #3C3C3C;
 }
 
 html[data-look="adele-1"][data-theme="dark"] .sw-footer a,
@@ -416,30 +348,8 @@ html[data-look="adele-1"][data-theme="dark"] .sw-footer-h {
   color: #D1D1D1;
 }
 
-@media (max-width: 1024px) {
-  html[data-look="adele-1"][data-theme="dark"] .layout {
-    grid-template-columns: 1fr;
-  }
-  html[data-look="adele-1"][data-theme="dark"] .sidebar {
-    position: static;
-    min-height: 0;
-    height: auto;
-    border-right: 0;
-    border-bottom: 1px solid #3C3C3C;
-  }
-}
-
-html[data-look="adele-1"][data-theme="dark"] .quiz-pass-stamp,
-html[data-look="adele-1"][data-theme="dark"] .quiz-pass-stamp.is-static {
-  background: #ED1C24;
-  color: #FFFFFF;
-  border-color: #C81017;
-}
-
-html[data-look="adele-1"][data-theme="dark"] .po-doc,
-html[data-look="adele-1"][data-theme="dark"] .bol-doc,
-html[data-look="adele-1"][data-theme="dark"] .ste-form-doc,
-html[data-look="adele-1"][data-theme="dark"] .ste-po-doc {
-  background: #FFFFFF !important;
-  color: #191919 !important;
+html[data-look="adele-1"][data-theme="dark"] input::placeholder,
+html[data-look="adele-1"][data-theme="dark"] textarea::placeholder {
+  color: #8C8C8C;
+  font-style: italic;
 }

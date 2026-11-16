@@ -110,13 +110,30 @@
     });
   }
 
+  function placeSwitcher() {
+    var sw = document.querySelector('.look-switch');
+    var actions = document.querySelector('.sw-util-actions');
+    if (!sw) return;
+    var phone = window.matchMedia('(max-width: 767px)').matches;
+    if (phone && actions) {
+      if (sw.parentNode !== actions) actions.appendChild(sw);
+      sw.classList.add('is-in-menu');
+    } else {
+      if (sw.parentNode !== document.body) document.body.appendChild(sw);
+      sw.classList.remove('is-in-menu');
+    }
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { sync(current()); syncFoundry(); });
+    document.addEventListener('DOMContentLoaded', function () { sync(current()); syncFoundry(); placeSwitcher(); });
   } else {
     sync(current());
     syncFoundry();
+    placeSwitcher();
   }
+  window.addEventListener('resize', placeSwitcher);
 
   window.applyLook = apply;
   window.syncFoundry = syncFoundry;
+  window.placeSwitcher = placeSwitcher;
 })();
