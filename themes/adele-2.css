@@ -834,7 +834,8 @@ html[data-look="adele-2"][data-theme="dark"] .btn-start,
 html[data-look="adele-2"][data-theme="dark"] .ste-form-hdr-badge,
 html[data-look="adele-2"][data-theme="dark"] .ste-po-badge,
 html[data-look="adele-2"][data-theme="dark"] .ste-tab.ste-tab-active,
-html[data-look="adele-2"][data-theme="dark"] .quiz-opt-btn.is-right .quiz-opt-label {
+html[data-look="adele-2"][data-theme="dark"] .quiz-opt-btn.is-right .quiz-opt-label,
+html[data-look="adele-2"][data-theme="dark"] .elapsed-done {
   background-color: #C81017 !important;
   color: #FFFCF8 !important;
   border-color: #F3EEE6 !important;
