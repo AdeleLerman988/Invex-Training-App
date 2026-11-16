@@ -1,0 +1,445 @@
+/*
+  Foundry — Adele 1 dark.
+  Loaded only while data-look is adele-1 and data-theme is dark.
+  Same 6px radius as the training sister theme. Red is a fill, a bar,
+  or an edge. It is not used for small text. A wrong answer stays an
+  ink border, a ✗, and the words "Not quite".
+*/
+
+html[data-look="adele-1"][data-theme="dark"] {
+  --bg: #191919;
+  --surface: #222222;
+  --surface2: #2B2B2B;
+  --border: #3C3C3C;
+  --text: #D1D1D1;
+  --heading: #FFFFFF;
+  --muted: #B3B3B3;
+  --input: #141414;
+  --accent: #ED1C24;
+  --accent2: #FFFFFF;
+  --warn: #D1D1D1;
+  --danger: #D1D1D1;
+  --timing: #D1D1D1;
+  --done: #FFFFFF;
+  --on-primary: #FFFFFF;
+  --placeholder: #8C8C8C;
+
+  --sw-red: #ED1C24;
+  --sw-red-dark: #C81017;
+  --sw-ink: #D1D1D1;
+  --sw-black: #191919;
+  --sw-heading: #FFFFFF;
+  --sw-text: #D1D1D1;
+  --sw-line: #3C3C3C;
+  --sw-line-strong: #6E6E6E;
+  --sw-mist: #2B2B2B;
+  --sw-white: #222222;
+
+  --red: #ED1C24;
+  --red-dark: #C81017;
+  --ink: #D1D1D1;
+  --white: #222222;
+  --line: #3C3C3C;
+  --line-strong: #6E6E6E;
+  --mist: #2B2B2B;
+
+  --radius: 6px;
+  --radius-button: 6px;
+  --radius-card: 6px;
+  --radius-input: 6px;
+  --radius-photo: 6px;
+  --radius-pill: 999px;
+
+  /* Small text is white or gray. #ED1C24 fails AA on #191919. */
+  --red-small: #FFFFFF;
+  --intro-bg: #222222;
+  --intro-fg: #D1D1D1;
+  --intro-heading: #FFFFFF;
+  --intro-eyebrow: #FFFFFF;
+  --intro-bar: 4px solid #ED1C24;
+  --intro-illus: #D1D1D1;
+  --illus-stroke: #D1D1D1;
+  --header-rule: 2px solid #ED1C24;
+
+  --state-correct: #FFFFFF;
+  --state-correct-large: #FFFFFF;
+  --state-correct-bg: #2B2B2B;
+  --state-correct-border: #ED1C24;
+  --state-correct-fill: #C81017;
+  --on-correct: #FFFFFF;
+  --correct-line: 2px solid #ED1C24;
+  --state-wrong: #D1D1D1;
+  --state-wrong-border: #D1D1D1;
+  --state-wrong-bg: #222222;
+  --word-correct: " Correct";
+  --word-wrong: " Not quite";
+
+  --email-btn-bg: transparent;
+  --email-btn-fg: #FFFFFF;
+  --fac-btn-bg: #C81017;
+  --fac-btn-fg: #FFFFFF;
+  --fac-btn-border: #C81017;
+  --fac-btn-hover: #ED1C24;
+  --fac-btn-hover-fg: #FFFFFF;
+
+  --cell-empty-bg: #141414;
+  --cell-empty-border: #6E6E6E;
+  --cell-empty-fg: #D1D1D1;
+  --cell-ondeck-bg: #141414;
+  --cell-ondeck-border: #ED1C24;
+  --cell-ondeck-fg: #FFFFFF;
+  --cell-filled-bg: #222222;
+  --cell-filled-border: #6E6E6E;
+  --cell-filled-fg: #FFFFFF;
+  --cell-done-bg: #2B2B2B;
+  --cell-done-border: #3C3C3C;
+  --cell-done-fg: #FFFFFF;
+  --cell-focus-bg: #141414;
+
+  --dept-sales: #FFFFFF;
+  --dept-purchasing: #D1D1D1;
+  --dept-planning: #B3B3B3;
+  --dept-scheduling: #FFFFFF;
+  --dept-recording: #D1D1D1;
+  --dept-transport: #B3B3B3;
+  --dept-receiving: #D1D1D1;
+  --dept-production: #FFFFFF;
+  --dept-quality: #FFFFFF;
+  --dept-accounting: #B3B3B3;
+}
+
+html[data-look="adele-1"][data-theme="dark"] body,
+html[data-look="adele-1"][data-theme="dark"] .main {
+  background: #191919;
+  color: #D1D1D1;
+}
+
+/* Full-bleed frame so the page color does not leave a strip beside the sidebar. */
+html[data-look="adele-1"][data-theme="dark"] .layout {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  background: #191919;
+  align-items: stretch;
+  grid-template-columns: 250px minmax(0, 1fr);
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sidebar {
+  background: #222222;
+  border-right: 1px solid #3C3C3C;
+  height: auto;
+  min-height: calc(100vh - var(--header-height));
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sw-header,
+html[data-look="adele-1"][data-theme="dark"] .sw-main,
+html[data-look="adele-1"][data-theme="dark"] .gloss-panel,
+html[data-look="adele-1"][data-theme="dark"] .login-card,
+html[data-look="adele-1"][data-theme="dark"] .modal,
+html[data-look="adele-1"][data-theme="dark"] .icard,
+html[data-look="adele-1"][data-theme="dark"] .intro-card,
+html[data-look="adele-1"][data-theme="dark"] .quiz-card,
+html[data-look="adele-1"][data-theme="dark"] .sc,
+html[data-look="adele-1"][data-theme="dark"] .sc-card,
+html[data-look="adele-1"][data-theme="dark"] .up-card,
+html[data-look="adele-1"][data-theme="dark"] .ex-card {
+  background: #222222;
+  color: #D1D1D1;
+  border-color: #3C3C3C;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sw-util {
+  background: #141414;
+  color: #D1D1D1;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sw-wordmark,
+html[data-look="adele-1"][data-theme="dark"] .sw-util h1,
+html[data-look="adele-1"][data-theme="dark"] .day-tab,
+html[data-look="adele-1"][data-theme="dark"] .tab,
+html[data-look="adele-1"][data-theme="dark"] .nav-item,
+html[data-look="adele-1"][data-theme="dark"] .gloss-btn,
+html[data-look="adele-1"][data-theme="dark"] .theme-toggle-btn,
+html[data-look="adele-1"][data-theme="dark"] .session-timer,
+html[data-look="adele-1"][data-theme="dark"] .user-badge,
+html[data-look="adele-1"][data-theme="dark"] .sw-sub {
+  color: #D1D1D1;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sw-logo-img,
+html[data-look="adele-1"][data-theme="dark"] .sw-login-logo {
+  content: url("../assets/logo-footer.svg");
+  width: 210px;
+  height: 82px;
+  object-fit: contain;
+  object-position: left center;
+  background: transparent;
+}
+
+html[data-look="adele-1"][data-theme="dark"] h1,
+html[data-look="adele-1"][data-theme="dark"] h2,
+html[data-look="adele-1"][data-theme="dark"] h3,
+html[data-look="adele-1"][data-theme="dark"] .icard h2,
+html[data-look="adele-1"][data-theme="dark"] .intro-card h2,
+html[data-look="adele-1"][data-theme="dark"] .cn,
+html[data-look="adele-1"][data-theme="dark"] .quiz-question,
+html[data-look="adele-1"][data-theme="dark"] .shdr-t,
+html[data-look="adele-1"][data-theme="dark"] .section-hdr-title {
+  color: #FFFFFF;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .icard p,
+html[data-look="adele-1"][data-theme="dark"] .intro-card p,
+html[data-look="adele-1"][data-theme="dark"] .cb,
+html[data-look="adele-1"][data-theme="dark"] .oi,
+html[data-look="adele-1"][data-theme="dark"] .quiz-desc,
+html[data-look="adele-1"][data-theme="dark"] .sw-hero p,
+html[data-look="adele-1"][data-theme="dark"] .sw-hero .oi {
+  color: #D1D1D1;
+}
+
+/* Eyebrows and the active item: white type, red bar. Not red type. */
+html[data-look="adele-1"][data-theme="dark"] .sb-lbl,
+html[data-look="adele-1"][data-theme="dark"] .fac-lbl,
+html[data-look="adele-1"][data-theme="dark"] .quiz-qnum,
+html[data-look="adele-1"][data-theme="dark"] .quiz-review-title,
+html[data-look="adele-1"][data-theme="dark"] .stat-label,
+html[data-look="adele-1"][data-theme="dark"] .feed-title,
+html[data-look="adele-1"][data-theme="dark"] .ex-field-lbl,
+html[data-look="adele-1"][data-theme="dark"] .sc-sec-lbl {
+  color: #FFFFFF;
+  border-left: 3px solid #ED1C24;
+  padding-left: 8px;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .day-tab.active,
+html[data-look="adele-1"][data-theme="dark"] .tab.active,
+html[data-look="adele-1"][data-theme="dark"] .nav-item.act,
+html[data-look="adele-1"][data-theme="dark"] .nav-item.active {
+  color: #FFFFFF;
+  background: transparent;
+  border-bottom: 2px solid #ED1C24;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .is,
+html[data-look="adele-1"][data-theme="dark"] .istat,
+html[data-look="adele-1"][data-theme="dark"] .stat,
+html[data-look="adele-1"][data-theme="dark"] .cc {
+  background: #2B2B2B;
+  border: 1px solid #3C3C3C;
+  box-shadow: none !important;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .is-v,
+html[data-look="adele-1"][data-theme="dark"] .istat-v,
+html[data-look="adele-1"][data-theme="dark"] .stat-val,
+html[data-look="adele-1"][data-theme="dark"] .quiz-stat-v {
+  color: #FFFFFF;
+}
+
+html[data-look="adele-1"][data-theme="dark"] input::placeholder,
+html[data-look="adele-1"][data-theme="dark"] textarea::placeholder {
+  color: #8C8C8C;
+  font-style: italic;
+  opacity: 1;
+}
+
+html[data-look="adele-1"][data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="hidden"]),
+html[data-look="adele-1"][data-theme="dark"] select,
+html[data-look="adele-1"][data-theme="dark"] textarea {
+  background: #141414;
+  color: #D1D1D1;
+  border: 1px solid #6E6E6E;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sched .sb,
+html[data-look="adele-1"][data-theme="dark"] .schedule .sched-block {
+  background: #2B2B2B !important;
+  color: #FFFFFF;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sched .sb:nth-child(even),
+html[data-look="adele-1"][data-theme="dark"] .schedule .sched-block:nth-child(even) {
+  background: #222222 !important;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sb .sl,
+html[data-look="adele-1"][data-theme="dark"] .sb .st,
+html[data-look="adele-1"][data-theme="dark"] .sched-block .sl,
+html[data-look="adele-1"][data-theme="dark"] .sched-block .st {
+  color: #FFFFFF;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sched-block.now::after {
+  content: "NOW";
+  background: #C81017 !important;
+  color: #FFFFFF !important;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 1px 4px;
+  border-radius: 2px !important;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .quiz-progress-wrap,
+html[data-look="adele-1"][data-theme="dark"] .prog-bar-outer,
+html[data-look="adele-1"][data-theme="dark"] .lp-prog-bar-outer,
+html[data-look="adele-1"][data-theme="dark"] .progress-bar {
+  height: 10px;
+  background: #141414;
+  border: 1px solid #ED1C24;
+  border-radius: 6px !important;
+  box-sizing: border-box;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .quiz-progress-bar,
+html[data-look="adele-1"][data-theme="dark"] .prog-bar-inner,
+html[data-look="adele-1"][data-theme="dark"] .lp-prog-bar-inner,
+html[data-look="adele-1"][data-theme="dark"] .progress-fill {
+  background: #FFFFFF;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .fac-toggle-btn,
+html[data-look="adele-1"][data-theme="dark"] .fac-toggle-btn:hover,
+html[data-look="adele-1"][data-theme="dark"] .fac-toggle-btn.is-on,
+html[data-look="adele-1"][data-theme="dark"] .btn-start,
+html[data-look="adele-1"][data-theme="dark"] .btn-stop,
+html[data-look="adele-1"][data-theme="dark"] .btn-p {
+  background: #C81017;
+  color: #FFFFFF;
+  border: 0;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .quiz-email-btn,
+html[data-look="adele-1"][data-theme="dark"] .quiz-email-btn:hover {
+  background: transparent !important;
+  color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .quiz-review-item.qcorrect {
+  background: #2B2B2B;
+  border: 2px solid #ED1C24;
+  color: #FFFFFF;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .quiz-review-item.qwrong {
+  background: #222222;
+  border: 2px solid #D1D1D1;
+  color: #D1D1D1;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .quiz-review-item.qwrong .quiz-review-icon,
+html[data-look="adele-1"][data-theme="dark"] .quiz-review-ans,
+html[data-look="adele-1"][data-theme="dark"] .quiz-status-fail,
+html[data-look="adele-1"][data-theme="dark"] .quiz-result-header.fail,
+html[data-look="adele-1"][data-theme="dark"] .quiz-result-header.fail .quiz-result-score,
+html[data-look="adele-1"][data-theme="dark"] .quiz-result-header.fail .quiz-result-label {
+  color: #D1D1D1;
+  border-color: #D1D1D1;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .step-check.ck,
+html[data-look="adele-1"][data-theme="dark"] .di.ck .dck,
+html[data-look="adele-1"][data-theme="dark"] .up-step-ck.ck,
+html[data-look="adele-1"][data-theme="dark"] .debrief-item.ck .d-check {
+  background: #C81017;
+  border-color: #C81017;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .step-check.ck::after,
+html[data-look="adele-1"][data-theme="dark"] .di.ck .dck::after,
+html[data-look="adele-1"][data-theme="dark"] .up-step-ck.ck::after,
+html[data-look="adele-1"][data-theme="dark"] .debrief-item.ck .d-check::after {
+  content: "✓";
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sc-status.done::before {
+  content: "✓ ";
+  color: #FFFFFF;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .dep-label {
+  color: #FFFFFF !important;
+}
+
+/* Tracker cells. Done is solid, on deck has a red edge, empty is dashed, locked is muted. */
+html[data-look="adele-1"][data-theme="dark"] input.txn-input {
+  background: #141414 !important;
+  color: #D1D1D1 !important;
+  border: 1px dashed #6E6E6E !important;
+  border-radius: 6px !important;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .cell-ondeck input.txn-input,
+html[data-look="adele-1"][data-theme="dark"] input.txn-input.on-deck {
+  background: #141414 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #ED1C24 !important;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .cell-done input.txn-input,
+html[data-look="adele-1"][data-theme="dark"] .elapsed-done {
+  background: #2B2B2B !important;
+  color: #FFFFFF !important;
+  border: 1px solid #3C3C3C !important;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .btn-clear-txn,
+html[data-look="adele-1"][data-theme="dark"] .btn-reset {
+  background: #2B2B2B;
+  color: #FFFFFF;
+  border: 1px solid #6E6E6E;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .cell-locked input.txn-input {
+  background: #141414 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23B3B3B3' stroke-width='2'><rect x='5' y='11' width='14' height='10' rx='2'/><path d='M8 11V8a4 4 0 0 1 8 0v3'/></svg>") right 8px center no-repeat !important;
+  color: #8C8C8C !important;
+  border: 1px solid #3C3C3C !important;
+  padding-right: 28px;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sw-footer {
+  background: #141414;
+  color: #D1D1D1;
+  border-top: 1px solid #3C3C3C;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .sw-footer a,
+html[data-look="adele-1"][data-theme="dark"] .sw-footer-h {
+  color: #D1D1D1;
+}
+
+@media (max-width: 1024px) {
+  html[data-look="adele-1"][data-theme="dark"] .layout {
+    grid-template-columns: 1fr;
+  }
+  html[data-look="adele-1"][data-theme="dark"] .sidebar {
+    position: static;
+    min-height: 0;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid #3C3C3C;
+  }
+}
+
+html[data-look="adele-1"][data-theme="dark"] .quiz-pass-stamp,
+html[data-look="adele-1"][data-theme="dark"] .quiz-pass-stamp.is-static {
+  background: #ED1C24;
+  color: #FFFFFF;
+  border-color: #C81017;
+}
+
+html[data-look="adele-1"][data-theme="dark"] .po-doc,
+html[data-look="adele-1"][data-theme="dark"] .bol-doc,
+html[data-look="adele-1"][data-theme="dark"] .ste-form-doc,
+html[data-look="adele-1"][data-theme="dark"] .ste-po-doc {
+  background: #FFFFFF !important;
+  color: #191919 !important;
+}

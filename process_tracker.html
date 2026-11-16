@@ -4,13 +4,28 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Invex Process Tracking</title>
+<link rel="icon" href="assets/logo-header.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="themes/steel-warehouse-training.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/app.css">
 <link rel="stylesheet" href="css/steel-look.css">
-<script>(function(){var s=localStorage.getItem('invex_theme');document.documentElement.setAttribute('data-theme', s==='dark'?'dark':'light');})();</script>
+<script>/* Apply the saved look and light/dark before first paint. Adele 1 stays the default. */
+(function(){
+  var LOOKS={original:'themes/original.css','adele-1':'themes/steel-warehouse-training.css','adele-2':'themes/adele-2.css'};
+  var CELEB={original:'original','adele-1':'sparks','adele-2':'confetti'};
+  var key='adele-1', theme=null;
+  try { key=localStorage.getItem('invex_look')||'adele-1'; theme=localStorage.getItem('invex_theme'); } catch (e) {}
+  if(!LOOKS[key]) key='adele-1';
+  document.documentElement.setAttribute('data-theme', theme==='dark'?'dark':'light');
+  document.documentElement.setAttribute('data-look', key);
+  document.documentElement.setAttribute('data-quiz-celebrate', CELEB[key]);
+  document.write('<link id="invex-theme" rel="stylesheet" href="'+LOOKS[key]+'">');
+  if(key==='adele-1' && theme==='dark') document.write('<link id="invex-theme-dark" rel="stylesheet" href="themes/steel-warehouse-training-dark.css">');
+})();
+</script>
+<link rel="stylesheet" href="css/look-switch.css">
 </head>
 <body>
 <div class="app">
@@ -109,7 +124,7 @@ function toggleNav(){
   btn.setAttribute('aria-expanded', open?'true':'false');
 }
 
-function toggleTheme(){var next=document.documentElement.getAttribute('data-theme')!=='dark';document.documentElement.setAttribute('data-theme', next?'dark':'light');localStorage.setItem('invex_theme', next?'dark':'light');var btn=document.getElementById('theme-toggle-btn');if(btn)btn.textContent=next?'Light':'Dark';}
+function toggleTheme(){var next=document.documentElement.getAttribute('data-theme')!=='dark';document.documentElement.setAttribute('data-theme', next?'dark':'light');localStorage.setItem('invex_theme', next?'dark':'light');var btn=document.getElementById('theme-toggle-btn');if(btn)btn.textContent=next?'Light':'Dark';if(window.syncFoundry)window.syncFoundry();}
 (function(){var btn=document.getElementById('theme-toggle-btn');if(btn)btn.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'Light':'Dark';})();
 // ── SCENARIO DEFINITIONS ──
 const SCENARIOS = [
@@ -558,8 +573,12 @@ function renderMain(){
       let cls='txn-input';
       if(val) cls+=' has-val';
       else if(isOnDeck) cls+=' on-deck';
+      let tone='empty';
+      if(isDone) tone='done';
+      else if(isOnDeck) tone='ondeck';
+      else if(!isMyDept) tone='locked';
 
-      html+=`<td class="cell"><div class="cell-inner">
+      html+=`<td class="cell cell-${tone}"><div class="cell-inner">
         <input id="inp_${sid}_${gi}" class="${cls}" type="text"
           value="${val.replace(/"/g,'&quot;')}"
           placeholder="Confirmation #"
@@ -716,5 +735,11 @@ function syncHScroll(){
 
 loadUser();
 </script>
+<div class="look-switch" role="radiogroup" aria-label="Theme">
+  <button type="button" role="radio" data-look="original" aria-checked="false" tabindex="-1">Original</button>
+  <button type="button" role="radio" data-look="adele-1" aria-checked="true">Adele 1</button>
+  <button type="button" role="radio" data-look="adele-2" aria-checked="false" tabindex="-1">Adele 2</button>
+</div>
+<script src="js/look-switch.js"></script>
 </body>
 </html>
