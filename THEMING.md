@@ -20,6 +20,31 @@ That file defines color, font family, weights, type scale, radii, shadows, spaci
 
 Do not edit `css/app.css` or `css/steel-look.css` to recolor the app. If a component needs a new role, add a token in the theme file and use that variable in the component rule.
 
+## Sister theme: Steel Warehouse Training
+
+`themes/steel-warehouse-training.css` is a friendlier sister of `themes/steel-warehouse.css`. It keeps the same palette, Roboto, and logo. It does not add hues.
+
+Switch themes by changing one stylesheet link in both `index.html` and `process_tracker.html`:
+
+```html
+<!-- Friendlier training theme (current) -->
+<link rel="stylesheet" href="themes/steel-warehouse-training.css">
+
+<!-- Base Steel Warehouse theme -->
+<link rel="stylesheet" href="themes/steel-warehouse.css">
+```
+
+Rules for the sister theme:
+
+- Radius is 6px everywhere, from the single `--radius` token. Pills and chips use `--radius-pill` and may be fully rounded.
+- Borders are 1px. Shadows stay the soft Steel Warehouse shadow, `0 4px 8px rgba(0, 0, 0, 0.10)`.
+- Red means correct. A correct answer uses a red border, a check icon, the word "Correct", and a short check animation. The animation is off when `prefers-reduced-motion` is set.
+- A wrong answer is not red. It uses an ink or heading border, a ✗ icon, and the words "Not quite". The right answer is then shown in the red correct style. Color is always paired with an icon and a word.
+- Small red text uses `--red-dark` (`#C81017`) so it stays readable on white. `#ED1C24` is for fills, borders, and large text. On the ink hero band, small labels are white, with a red bar as the accent.
+- The day intro is an ink (`#17212E`) band. Dark mode uses the same palette: ink and black surfaces, white text, red accents.
+
+`css/app.css` and `css/steel-look.css` read these roles from tokens. When a token is missing, they fall back to the base Steel Warehouse values, so pointing the link back at `themes/steel-warehouse.css` restores that theme.
+
 ## Notes
 
 - Media queries cannot read custom properties. `--bp-tablet` (1024px) and `--bp-phone` (767px) are the source of truth; the same numbers are written out in `css/steel-look.css`.

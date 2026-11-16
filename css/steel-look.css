@@ -577,7 +577,7 @@ h3,
   padding: var(--button-padding);
   background: transparent;
   color: var(--sw-heading);
-  border: 2px solid var(--sw-red);
+  border: var(--control-border, 2px) solid var(--sw-red);
   font-size: var(--button-size);
   line-height: var(--button-line);
   font-weight: var(--weight-heading);
@@ -616,7 +616,7 @@ h3,
   line-height: var(--nav-line);
   font-weight: var(--weight-button);
   text-transform: uppercase;
-  border: 2px solid var(--sw-red);
+  border: var(--control-border, 2px) solid var(--sw-red);
   background: transparent;
   color: var(--sw-heading);
   cursor: pointer;
@@ -689,8 +689,11 @@ textarea,
 }
 
 input::placeholder,
-textarea::placeholder {
-  color: var(--sw-text);
+textarea::placeholder,
+.login-input::placeholder,
+.login-code-input::placeholder,
+.gloss-search-input::placeholder {
+  color: var(--placeholder, var(--sw-text));
   opacity: 1;
 }
 
@@ -1321,4 +1324,473 @@ thead th,
   .modal {
     width: calc(100% - 32px);
   }
+}
+
+/*
+  Sister-theme hooks. Every value falls back to the base Steel Warehouse
+  look, so themes/steel-warehouse.css still renders as it does today.
+  themes/steel-warehouse-training.css sets the tokens.
+*/
+
+.sw-header {
+  border-bottom: var(--header-rule, 0 solid transparent);
+}
+
+a {
+  color: var(--red-small, var(--sw-red));
+}
+
+.sb-lbl,
+.fac-lbl,
+.quiz-qnum,
+.quiz-review-title,
+.stat-label,
+.feed-title,
+.ex-field-lbl,
+.sc-sec-lbl,
+.badge-day,
+.day-tab.active,
+.tab.active,
+.nav-item.act,
+.nav-item.active,
+.is-v,
+.istat-v,
+.lp-prog-pct,
+.quiz-stat-v,
+.stat-val,
+.gf-btn.is-on {
+  color: var(--red-small, var(--sw-red));
+}
+
+.prog-pct {
+  color: var(--state-correct-large, var(--sw-red));
+}
+
+.sw-hero.icard,
+.sw-hero.intro-card {
+  background: var(--intro-bg, var(--surface));
+  color: var(--intro-fg, var(--text));
+  border-top: var(--intro-bar, 1px solid var(--sw-line));
+}
+
+.sw-hero.icard h2,
+.sw-hero.intro-card h2 {
+  color: var(--intro-heading, var(--heading));
+}
+
+.sw-hero.icard p,
+.sw-hero.intro-card p,
+.sw-hero .oi,
+.sw-hero .obj-item {
+  color: var(--intro-fg, var(--text));
+}
+
+.sw-hero .sb-lbl {
+  color: var(--intro-eyebrow, var(--sw-red));
+}
+
+.sw-hero .oa,
+.sw-hero .obj-arrow {
+  color: var(--intro-fg, var(--accent2));
+}
+
+.sw-hero [style*="color:var(--muted)"] {
+  color: var(--intro-fg, var(--muted)) !important;
+}
+
+.sw-illus {
+  display: var(--illus-display, none);
+  float: right;
+  width: 64px;
+  height: auto;
+  margin: 0 0 var(--space-2) var(--space-4);
+  color: var(--illus-stroke, var(--sw-ink));
+}
+
+.sw-hero .sw-illus {
+  width: var(--illus-hero, 64px);
+  color: var(--intro-illus, var(--illus-stroke, var(--sw-ink)));
+}
+
+.sw-hero::after,
+.cc::after {
+  content: "";
+  display: var(--illus-clear, none);
+  clear: both;
+}
+
+.ct,
+.gtag,
+.snb,
+.sc-status,
+.up-tag,
+.diff-badge,
+.pm-lv,
+.pm-lib-dept,
+.step-dept,
+.atag,
+.mem-legend-chip,
+.login-role-badge,
+.fac-dept-pill,
+.up-filter-btn,
+.gloss-cat-btn,
+.mode-btn,
+.badge,
+.active-chip,
+.ot-num,
+.pm-btn,
+.ste-tab {
+  border-radius: var(--radius-pill, var(--radius)) !important;
+}
+
+.ct,
+.gtag,
+.snb,
+.sc-status,
+.up-tag,
+.diff-badge,
+.pm-lv,
+.pm-lib-dept,
+.ot-num,
+.fac-dept-pill,
+.up-filter-btn,
+.gloss-cat-btn,
+.mode-btn,
+.badge,
+.active-chip,
+.mem-legend-chip,
+.pm-btn,
+.ste-tab,
+.gf-btn,
+.nav-item,
+.day-tab,
+.tab,
+.quiz-opt-btn,
+.theme-toggle-btn,
+.gloss-btn,
+.gloss-cat-btn,
+.gc-badge,
+.session-timer,
+.user-badge,
+.login-role-badge {
+  min-height: var(--hit-min, auto);
+  box-sizing: border-box;
+}
+
+.quiz-progress-wrap { height: var(--progress-h, 3px); }
+.prog-bar-outer,
+.lp-prog-bar-outer { height: var(--progress-h, 4px); }
+.progress-bar { height: var(--progress-h, 2px); }
+
+.quiz-review-item.qcorrect {
+  background: var(--state-correct-bg, var(--sw-mist));
+  border-color: var(--state-correct-border, var(--sw-ink));
+}
+
+.quiz-review-item.qcorrect,
+.quiz-review-item.qcorrect .quiz-review-icon,
+.quiz-review-correct,
+.quiz-status-pass,
+.quiz-result-header.pass .quiz-result-label,
+.seq-result.seq-perfect,
+.ds-score.ds-perfect,
+.ste-score.ste-perfect {
+  color: var(--state-correct, var(--sw-ink));
+}
+
+.quiz-result-header.pass .quiz-result-score {
+  color: var(--state-correct-large, var(--sw-ink));
+}
+
+.quiz-result-header.pass {
+  background: var(--state-correct-bg, var(--sw-mist));
+  border-color: var(--state-correct-border, var(--sw-ink));
+}
+
+.quiz-review-item.qwrong,
+.quiz-result-header.fail {
+  background: var(--state-wrong-bg, var(--sw-white));
+  border-color: var(--state-wrong-border, var(--sw-red));
+  color: var(--state-wrong, var(--sw-red));
+}
+
+.quiz-review-item.qwrong .quiz-review-icon,
+.quiz-review-ans,
+.quiz-result-header.fail .quiz-result-score,
+.quiz-result-header.fail .quiz-result-label,
+.quiz-status-fail,
+.seq-item.seq-wrong,
+.ds-item.ds-wrong,
+.ste-row.ste-revealed-missed .ste-reveal-note,
+.ste-row.ste-revealed-missed .ste-value,
+.ds-item.ds-wrong::after {
+  color: var(--state-wrong, var(--sw-red));
+  border-color: var(--state-wrong-border, var(--sw-red));
+}
+
+.seq-item.seq-wrong {
+  background: var(--state-wrong-bg, color-mix(in srgb, var(--sw-red) 3%, transparent));
+}
+
+.ds-item.ds-wrong,
+.ste-row.ste-revealed-missed .ste-value {
+  background: var(--state-wrong-bg, color-mix(in srgb, var(--sw-red) 8%, transparent));
+}
+
+.quiz-review-icon {
+  display: inline-block;
+  transform-origin: left center;
+  animation: var(--check-anim, none);
+}
+
+.quiz-review-item.qwrong .quiz-review-icon,
+.quiz-review-item:not(.qcorrect) .quiz-review-icon {
+  animation: none;
+}
+
+.quiz-review-item.qcorrect .quiz-review-icon::after {
+  content: var(--word-correct, none);
+}
+
+.quiz-review-item.qwrong .quiz-review-icon::after {
+  content: var(--word-wrong, none);
+}
+
+.quiz-review-correct {
+  background: var(--state-correct-bg, transparent);
+  border: var(--correct-line, 0 solid transparent);
+  padding: var(--correct-pad, 0 0 0 18px);
+}
+
+.quiz-review-correct::before {
+  content: var(--correct-mark, none);
+}
+
+.quiz-review-item {
+  padding: var(--review-pad, 8px 10px);
+}
+
+@keyframes sw-check-in {
+  0% { transform: scale(0.6); opacity: 0; }
+  70% { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-review-icon { animation: none !important; }
+}
+
+.step-check.ck,
+.debrief-item.ck .d-check,
+.di.ck .dck,
+.up-step-ck.ck {
+  background: var(--state-correct-fill, var(--sw-ink));
+  border-color: var(--state-correct-fill, var(--sw-ink));
+}
+
+.di.ck .dck::after,
+.step-check.ck::after,
+.up-step-ck.ck::after,
+.debrief-item.ck .d-check::after {
+  color: var(--on-correct, var(--sw-black));
+}
+
+.quiz-email-btn {
+  background: var(--email-btn-bg, var(--accent2));
+  color: var(--email-btn-fg, var(--sw-black));
+  border: 0;
+  min-height: var(--hit-min, auto);
+  padding: var(--email-pad, 8px 18px);
+  font-size: var(--email-size, 12px);
+  font-weight: var(--weight-button);
+  text-decoration: none;
+}
+
+.quiz-email-btn:hover {
+  background: var(--fac-btn-hover, var(--accent2));
+  color: var(--email-btn-fg, var(--sw-black));
+}
+
+.fac-toggle-btn {
+  background: var(--fac-btn-bg, transparent);
+  color: var(--fac-btn-fg, var(--sw-heading));
+  border: var(--control-border, 2px) solid var(--fac-btn-border, var(--sw-red));
+}
+
+.fac-toggle-btn:hover,
+.fac-toggle-btn.is-on {
+  background: var(--fac-btn-hover, var(--sw-red));
+  color: var(--fac-btn-hover-fg, var(--sw-white));
+}
+
+/*
+  The shared input rule uses several :not() selectors, so it beats a
+  plain .txn-input rule. !important lets the cell tokens win. Fallbacks
+  match the input that rule already paints, so the base theme is unchanged.
+*/
+input.txn-input {
+  background: var(--cell-empty-bg, var(--sw-white)) !important;
+  border-color: var(--cell-empty-border, var(--sw-line-strong)) !important;
+  color: var(--cell-empty-fg, var(--sw-text)) !important;
+}
+
+input.txn-input.has-val {
+  border-color: var(--cell-filled-border, var(--sw-line-strong)) !important;
+  background: var(--cell-filled-bg, var(--sw-white)) !important;
+  color: var(--cell-filled-fg, var(--sw-text)) !important;
+}
+
+input.txn-input.on-deck {
+  border-color: var(--cell-ondeck-border, var(--sw-line-strong)) !important;
+  background: var(--cell-ondeck-bg, var(--sw-white)) !important;
+  color: var(--cell-ondeck-fg, var(--sw-text)) !important;
+  animation: none !important;
+}
+
+input.txn-input:focus {
+  background: var(--cell-focus-bg, var(--sw-white)) !important;
+  border-color: var(--sw-ink) !important;
+}
+
+.elapsed-done {
+  background: var(--cell-done-bg, var(--sw-mist));
+  border-color: var(--cell-done-border, var(--sw-ink));
+  color: var(--cell-done-fg, var(--sw-ink));
+}
+
+[style*="color:var(--sw-red)"] {
+  color: var(--red-small, var(--sw-red)) !important;
+}
+
+.ct[style*="color:var(--accent)"],
+.gtag[style*="color:var(--accent)"],
+.gtag[style*="color:var(--danger)"] {
+  color: var(--red-small, var(--accent)) !important;
+}
+
+.is-l,
+.istat-l,
+.quiz-stat-l,
+.ct,
+.snb,
+.gtag,
+.ot-num,
+.sc-status,
+.diff-badge,
+.pm-row-lbl,
+.pm-lv,
+.pm-lib-dept,
+.up-process,
+.up-card-num,
+.up-res-lbl,
+.up-practice-lbl,
+.who-lbl,
+.dep-label,
+.login-role-badge,
+.sb-dept-badge,
+.lp-prog-lbl,
+.mem-legend-chip,
+.seq-num,
+.ds-col-hdr,
+.arc-def-label,
+.ste-form-hdr-badge,
+.ste-form-hdr-status,
+.ste-po-badge,
+.ste-po-sub,
+.login-logo,
+.btn-clear-txn,
+.bol-table th,
+.bol-meas-table th,
+.bol-footer-note,
+.bol-badge-collect,
+.po-doc-table th,
+.po-doc-po-label {
+  font-size: var(--text-floor, 9px);
+}
+
+.atag,
+.step-dept,
+.up-tag,
+.gc-badge {
+  font-size: var(--text-floor, 8px);
+}
+
+.sc-cust,
+.up-count,
+.gloss-count-bar,
+.gloss-count-bar button,
+.gloss-cat-btn,
+.stat-sub,
+.active-banner-label,
+.active-chip,
+.hk,
+.prog-lbl,
+.quiz-review-ans,
+.quiz-review-correct,
+.mem-legend,
+.seq-instruct,
+.ste-label,
+.ste-reveal-note,
+.ste-form-meta-item,
+.ste-po-label,
+.elapsed-done,
+.live-clock,
+.feed-item .ts,
+.po-doc-instr,
+.po-doc-po-date,
+.bol-doc,
+.up-toggle {
+  font-size: var(--text-floor, 10px);
+}
+
+.quiz-review-item,
+.quiz-opt-label,
+.ds-item,
+.ds-instruct,
+.ds-score,
+.arc-ol-sub,
+.arc-meta,
+.mem-stats,
+.ste-instruct,
+.ste-value,
+.quiz-attempt-status,
+.sc-toggle,
+.mode-toggle-lbl,
+.pm-link,
+.pm-lib-ext,
+.login-code-toggle,
+.ot-dw,
+.gloss-term-def,
+.fac-cfg-sub,
+.fac-cfg-hint,
+.fac-cfg-day,
+.modal label,
+.header-left p,
+.hint,
+.step-name-lbl,
+thead th,
+.bol-hdr-title,
+.po-doc,
+.seq-result,
+.ste-score {
+  font-size: var(--text-floor, 11px);
+}
+
+.seq-text { font-size: var(--text-floor, 11.5px); }
+.mem-card-back,
+.arc-ol-inst { font-size: var(--text-floor, 10.5px); }
+
+.sched-block.now::after {
+  font-size: var(--text-floor, 7px);
+}
+
+[style*="font-size:8px"] { font-size: var(--text-floor, 8px) !important; }
+[style*="font-size:8.5px"] { font-size: var(--text-floor, 8.5px) !important; }
+[style*="font-size:9px"] { font-size: var(--text-floor, 9px) !important; }
+[style*="font-size:9.5px"] { font-size: var(--text-floor, 9.5px) !important; }
+[style*="font-size:10px"] { font-size: var(--text-floor, 10px) !important; }
+[style*="font-size:11px"] { font-size: var(--text-floor, 11px) !important; }
+
+@media (max-width: 767px) {
+  .sw-hero .sw-illus { width: 96px; }
 }
