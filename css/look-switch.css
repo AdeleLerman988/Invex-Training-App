@@ -77,6 +77,12 @@
   .tabs.is-open .look-switch.is-in-menu {
     display: flex;
   }
+  /* Adele 1: the open menu ends on the pill, so a line of page text peeks through.
+     Extra bottom padding stays on the absolute panel and does not grow the closed header. */
+  html[data-look="adele-1"] .day-tabs.is-open,
+  html[data-look="adele-1"] .sw-header .tabs.is-open {
+    padding-bottom: 16px;
+  }
   body {
     padding-bottom: calc(72px + env(safe-area-inset-bottom));
   }

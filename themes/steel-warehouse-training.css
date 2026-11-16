@@ -397,3 +397,8 @@
     transform: translate(-50%, -50%);
   }
 }
+
+/* Saved tracker numbers are bold in both Adele 1 modes. The box size stays put. */
+html[data-look="adele-1"] input.txn-input.has-val {
+  font-weight: 700 !important;
+}
